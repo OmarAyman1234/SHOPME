@@ -5,7 +5,7 @@
 
 body {
   margin: 0;
-  padding: 8rem 3rem 3rem 3rem; /*90px 0 0 10px*/
+  padding: 8rem 3rem 0 3rem; /*90px 0 0 10px*/
   background-color: lightgray;
 }
 
@@ -26,6 +26,7 @@ body {
   border-radius: 10px;
 
   overflow: hidden;
+  cursor: pointer;
 }
 
 .appliances-showing .showing-image {

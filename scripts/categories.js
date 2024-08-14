@@ -3,10 +3,15 @@ export const categories = [{
   name: 'Appliances',
 },
 {
-  image: '../Images/kitchenware/1_kitchenware-utensils-set.png',
+  image: '../Images/kitchenware/1_kitchenware-display3.png',
   name: 'Kitchenware'
 }, 
 {
-  image:'../',
-  name:'Clothing'
+  image:'../Images/clothing/1_shirts-display.jpg',
+  name: 'Clothing'
+},
+{
+  image: '../Images/house-components/1_house-components.jpg',
+  name: 'House Components'
+  //Chairs, beds ... etc
 }];

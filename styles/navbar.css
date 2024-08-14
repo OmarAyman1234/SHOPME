@@ -1,8 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Revalia&family=Sixtyfour&display=swap');
 
+:root {
+  --primary: rgb(245, 245, 0);
+  --secondary: #557878;
+
+  --navBk: #7caeae;
+
+  --searchBorder: 0.1875rem solid #557878;
+  --buttonsColor: #111;
+  --cartColor: #111;
+
+  --darkModeHoverColor: rgb(230,230,230);
+  --darkModeHoverBk: #222;
+}
 .dark-mode {
-  background-color: black;
-  color: rgb(45, 149, 253);  
+  --primary: rgb(0, 190, 0);
+  --secondary: #47b7b7;
+
+  --navBk: #222;
+
+  --searchBorder: 0.1875rem solid #00a1eb;
+
+  --buttonsColor: #e6e6e6;
+  --cartColor: rgb(220, 220, 220);
+
+  --darkModeHoverColor: rgb(0, 149, 0);
+  --darkModeHoverBk: #d6d6d6;
 }
 
 .navbar {
@@ -16,7 +39,7 @@
   justify-content: space-between;
   
   height: 5.625rem; /* 90px */
-  background-color: #7caeae;
+  background-color: var(--navBk);
 
   padding: 0 1.25rem 0 1.25rem; /* 0 20px 0 20px */
 
@@ -29,7 +52,7 @@
 }
 
 .shop-name-header {
-  color: yellow;
+  color: var(--primary);
   font-weight: bold;
   font-family: "Revalia", sans-serif;
   font-size: 2.5rem; /* 40px */
@@ -48,7 +71,7 @@
   height: 2.8125rem; /* 45px */
   font-size: 1.375rem; /* 22px */
   border-radius: 0;
-  border: 0.1875rem solid #557878; /* 3px */
+  border: var(--searchBorder); /* 3px */
   margin-right: -0.0625rem; /* -1px */
   border-top-left-radius: 0.625rem; /* 10px */
   border-bottom-left-radius: 0.625rem; /* 10px */
@@ -63,9 +86,9 @@
 .search-button {
   width: 3.125rem; /* 50px */
   height: 2.8125rem; /* 45px */
-  color: #7caeae;
-  background-color: yellow;
-  border: 0.1875rem solid #557878; /* 3px */
+  color: var(--buttonsColor);
+  background-color: var(--primary);
+  border: var(--searchBorder); /* 3px */
   border-top-right-radius: 0.625rem; /* 10px */
   border-bottom-right-radius: 0.625rem; /* 10px */
   cursor: pointer;
@@ -81,8 +104,8 @@
 .navbar-right-button {
   width: 2.8125rem; /* 45px */
   height: 2.8125rem; /* 45px */
-  color: #404040;
-  background-color: yellow;
+  color: var(--buttonsColor);
+  background-color: var(--primary);
   border: none;
   border-radius: 0.3125rem; /* 5px */
   cursor: pointer;
@@ -93,8 +116,8 @@
 }
 
 .navbar-right-dark-mode:hover {
-  color: white;
-  background-color: black;
+  color: var(--darkModeHoverColor);
+  background-color: var(--darkModeHoverBk);
 }
 
 .cart-container {
@@ -104,7 +127,7 @@
 .navbar-right-cart {
   width: 2.8125rem; /* 45px */
   height: 2.8125rem; /* 45px */
-  color: black;
+  color: var(--cartColor);
   background-color: rgba(0, 0, 0, 0);
   border: none;
   font-size: 2.1875rem; /* 35px */
