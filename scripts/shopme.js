@@ -1,4 +1,4 @@
-import { categories } from "./categories.js";
+import { categories } from "../data/data.js";
 
 let categoriesRender = '';
 
@@ -15,7 +15,6 @@ categories.forEach(category => {
     </div>
   `;
 });
-console.log(categoriesRender);
 document.querySelector('.landing-body-container').innerHTML = categoriesRender;
 
 const toggleDarkMode = document.querySelector('.navbar-right-dark-mode');
