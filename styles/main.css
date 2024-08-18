@@ -3,6 +3,14 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+  color: var(--bodyTextColor);
+  background-color: var(--bodyBk);
+
+  margin: 0;
+  padding: 8rem 3rem 0 3rem;
+}
+
 :root {
   --primary: rgb(245, 245, 0);
   --secondary: #7caeae;
