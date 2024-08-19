@@ -4,9 +4,14 @@
   --cartProductNameColor: #003366;
   --cartProductImgShadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
   --cartQuantityColor: #1f1f1f;
+
   --cartUpdateQuantityColor: #0088cc;
+  --cartUpdateQuantityHoverColor: #006699;
+
   --cartPriceColor: #007799;
+
   --cartRemoveFromCartColor: #e60000;
+  --cartRemoveFromCartHoverColor: #cc0000;
 }
 
 .dark-mode {
@@ -15,22 +20,27 @@
   --cartProductNameColor: #80d4ff;
   --cartProductImgShadow: inset 0 0 50px rgba(255, 255, 255, 0.8);
   --cartQuantityColor: #cfcfcf;
+
   --cartUpdateQuantityColor: #66c2ff;
+  --cartUpdateQuantityHoverColor: #4ea0cc;
+
   --cartPriceColor: #99ccff;
+
   --cartRemoveFromCartColor: #f66;
+  --cartRemoveFromCartHoverColor: #cc5252;
 }
 
 
-.cart-container {
+.cart-products-container {
   display: grid;
   grid-template-columns: 1fr;
+  gap: 1rem;
 }
 .cart-product {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: start;
-  gap: 1.5rem;
+  justify-content: space-between;
 
   height: 15rem;
 
@@ -41,11 +51,13 @@
   border-top: 4px solid var(--accentColor);
   border-radius: 8px;
   margin-bottom: 1rem;
-  padding: 1rem;
+  padding: 0 3rem 0 3rem;
 }
 
 .cart-product-name {
-  color: var(--cartProductNameColor) ;
+  color: var(--cartProductNameColor);
+  width: 12rem;
+  text-align: center;
 }
 .cart-product-image-container {
   border: var(--cartProductsBorders);
@@ -58,24 +70,43 @@
   object-fit: contain;
   box-shadow: var(--cartProductImgShadow);
 }
+
 .cart-quantity-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
+
+  width: 10rem;
 }
 .cart-quantity-container .quantity {
   font-weight: 600;
-  color: var(--cartQuantityColor) ;
+  color: var(--cartQuantityColor);
 }
-.cart-quantity-container .update-quantity {
-  color: var(--cartUpdateQuantityColor) ;
+.cart-quantity-container .quantity-update-input {
+  width: 4rem;
 }
-.cart-quantity-container .price {
-  color: var(--cartPriceColor) ;
+.cart-quantity-container .update-quantity,
+.cart-quantity-container .save-quantity {
+  color: var(--cartUpdateQuantityColor);
+
+  cursor: pointer;
 }
+.cart-quantity-container .update-quantity:hover,
+.cart-quantity-container .save-quantity:hover {
+  color: var(--cartUpdateQuantityHoverColor);
+}
+
+.cart-product .price {
+  color: var(--cartPriceColor);
+  width: 10rem;
+}
+
 .remove-from-cart {
   color: var(--cartRemoveFromCartColor);
 
-  
+  cursor: pointer;
+}
+.remove-from-cart:hover {
+  color: var(--cartRemoveFromCartHoverColor);
 }

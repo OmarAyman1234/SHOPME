@@ -1,7 +1,7 @@
 import { categories, getCategoryProducts } from "../data/data.js";
 import { handleUrlName } from "../utils/handleUrlName.js";
 import { hideBodyContent } from "../utils/modifySections.js";
-import { addToCart } from "./cart.js";
+import { addToCart, renderCartProducts } from "./cart.js";
 
 const categoriesContainer = document.querySelector('.categories-container');
 const productsContainer = document.querySelector('.products-container');
@@ -65,18 +65,20 @@ function handleCategoriesClick(categoryName) {
   location.hash = `#/${encodeURIComponent(formattedCategoryName)}`;
   
   hideBodyContent();
+  window.scrollTo(0,0);
 
+  renderedSectionName.textContent = categoryName;
+
+  let categoryProductsRender = ``;
   const categoryProducts = getCategoryProducts(categoryName);
   if(categoryProducts.length === 0) {
-    renderedSectionNameContainer.classList.remove('hidden');
-    renderedSectionName.textContent = 'Sorry...  This category has no items at the moment.';
-    
-  } else {
-    renderedSectionNameContainer.classList.remove('hidden');
-    renderedSectionName.textContent = categoryName;
 
-    let categoryProductsRender = ``;
-  
+    categoryProductsRender = 'There are no available items for this category at the moment...';
+    productsContainer.classList.remove('hidden');
+    productsContainer.innerHTML = categoryProductsRender;
+
+  } else {
+
     categoryProducts.forEach(categoryProduct => {
       categoryProductsRender += `
       <div class="each-product-container">
@@ -116,20 +118,32 @@ function getCategoryNameFromHash() {
 
 // Handle hash change events
 window.addEventListener('hashchange', () => {
-  const categoryName = getCategoryNameFromHash();
-  if (categoryName) {
-    handleCategoriesClick(categoryName);
+  const hash = location.hash.slice(2);
+  if (hash === 'cart') {
+    window.scrollTo(0,0);
+    renderCartProducts();
   } else {
-    renderCategories();
+    const categoryName = getCategoryNameFromHash();
+    if (categoryName) {
+      handleCategoriesClick(categoryName);
+    } else {
+      renderCategories();
+    }
   }
 });
 
 // Initial page load and refreshing the page
 document.addEventListener('DOMContentLoaded', () => {
-  const categoryName = getCategoryNameFromHash();
-  if (categoryName) {
-    handleCategoriesClick(categoryName);
+  const hash = location.hash.slice(2);
+  if (hash === 'cart') {
+      window.scrollTo(0,0);
+    renderCartProducts();
   } else {
-    renderCategories();
+    const categoryName = getCategoryNameFromHash();
+    if (categoryName) {
+      handleCategoriesClick(categoryName);
+    } else {
+      renderCategories();
+    }
   }
 });
