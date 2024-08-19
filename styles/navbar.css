@@ -4,12 +4,19 @@
   --darkModeHoverColor: rgb(230,230,230);
   --darkModeHoverBk: #222;
 
+  --searchBorder: 0.1875rem solid #222;
+  --searchFocus: #00aaf9;
+
   --tooltipBk: #005050;
 }
 
 .dark-mode {
   --darkModeHoverColor: rgb(0, 149, 0);
   --darkModeHoverBk: #d6d6d6;
+  
+  --searchBorder: 0.1875rem solid #00a1eb;
+  --searchFocus: #c8c500;
+
   --tooltipBk: #2d2d2d;
 }
 
