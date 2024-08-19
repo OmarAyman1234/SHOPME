@@ -1,4 +1,4 @@
-.rendered-category-name-container {
+.rendered-section-name-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,12 +7,9 @@
   border-radius: 10px;
   box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.8);
 }
-.dark-mode .rendered-category-name-container {
+.dark-mode .rendered-section-name-container {
   border: 0.25rem solid rgb(82, 82, 82);
   box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.8);
-}
-.rendered-category-name {
-
 }
 
 .products-container {

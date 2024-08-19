@@ -14,6 +14,7 @@ body {
 :root {
   --primary: rgb(245, 245, 0);
   --secondary: #7caeae;
+  --accentColor: #046;
 
   --bodyBk: rgb(211, 211, 211);
   --bodyTextColor: #222;
@@ -27,12 +28,21 @@ body {
 
   --addToCartBorder: 1px solid #007bbd;
   --addToCartHover: #009cda;
+
+  --cartProductBk: #f5faff;
+  --cartProductsBorders: 2px solid #1a1a1a;
+  --cartProductNameColor: #003366;
+  --cartProductImgShadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
+  --cartQuantityColor: #1f1f1f;
+  --cartUpdateQuantityColor: #0088cc;
+  --cartPriceColor: #007799;
+  --cartRemoveFromCartColor: #e60000;
 }
 
 .dark-mode {
   --primary: rgb(0, 190, 0);
   --secondary: #222;
-  
+  --accentColor: #80d4ff;
   --bodyBk: #4d4d4d;
   --bodyTextColor: #e6e6e6;
   
@@ -46,6 +56,14 @@ body {
   --addToCartBorder: 1px solid #9e9e00;
   --addToCartHover: #b3af00;
 
+  --cartProductBk: #1e2a35;
+  --cartProductsBorders: 2px solid #666; 
+  --cartProductNameColor: #80d4ff;
+  --cartProductImgShadow: inset 0 0 50px rgba(255, 255, 255, 0.8);
+  --cartQuantityColor: #cfcfcf;
+  --cartUpdateQuantityColor: #66c2ff;
+  --cartPriceColor: #99ccff;
+  --cartRemoveFromCartColor: #f66;
 }
 
 .dark-mode a {
@@ -67,7 +85,12 @@ a:hover {
   color: #0072ab;
   text-decoration: underline;
 }
+
+.hidden {
+  display: none !important;
+}
+
 ::selection {
   color: white;
-  background-color: rgb(220, 0, 0);
+  background-color: rgb(200, 0, 0);
 }

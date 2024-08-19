@@ -1,13 +1,7 @@
-export function getCategory(categoryId) {
-  let matchingCategory;
-  
-  categories.forEach(category => {
-    if(category.id === categoryId) {
-      matchingCategory = category;
-    }
+export function getProduct(productId) {
+  let matchingProduct;
 
-  });
-  return matchingCategory;
+  return matchingProduct = products.find(product => product.id === productId);
 }
 
 export function getCategoryProducts(categoryName) {
@@ -47,7 +41,7 @@ export const categories = [
 ];
 
 
-export const products = [
+const products = [
   {
     type: 'appliances',
     id: '1000', 
@@ -59,10 +53,10 @@ export const products = [
   {
     type: 'appliances',
     id: '1001', 
-    name: 'Smart Refrigerator', 
-    image: '../Images/appliances/smart-refrigerator.png', 
+    name: 'Refrigerator', 
+    image: '../Images/appliances/refrigerator.png', 
     price: 30000,
-    description: 'An energy effecient refrigerator.'
+    description: ''
   },
   {
     type: 'appliances',
@@ -206,7 +200,7 @@ export const products = [
   },
   {
     type: 'clothing',
-    id: 20,
+    id: '1019',
     name: 'Belt',
     image: '../Images/clothing/leather-belt-black.png',
     price: 200,

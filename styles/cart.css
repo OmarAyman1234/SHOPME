@@ -1,0 +1,58 @@
+.cart-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.cart-product {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 1.5rem;
+
+  height: 15rem;
+
+  background-color: var(--cartProductBk);
+
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+
+  border-top: 4px solid var(--accentColor);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.cart-product-name {
+  color: var(--cartProductNameColor) ;
+}
+.cart-product-image-container {
+  border: var(--cartProductsBorders);
+  width: 12rem;
+  height: 12rem;
+}
+.cart-product img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  box-shadow: var(--cartProductImgShadow);
+}
+.cart-quantity-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+.cart-quantity-container .quantity {
+  font-weight: 600;
+  color: var(--cartQuantityColor) ;
+}
+.cart-quantity-container .update-quantity {
+  color: var(--cartUpdateQuantityColor) ;
+}
+.cart-quantity-container .price {
+  color: var(--cartPriceColor) ;
+}
+.remove-from-cart {
+  color: var(--cartRemoveFromCartColor);
+
+  
+}

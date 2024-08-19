@@ -1,5 +1,12 @@
-import { categories, products, getCategory, getCategoryProducts } from "../data/data.js";
+import { categories, getCategoryProducts } from "../data/data.js";
 import { handleUrlName } from "../utils/handleUrlName.js";
+import { hideBodyContent } from "../utils/modifySections.js";
+import { addToCart } from "./cart.js";
+
+const categoriesContainer = document.querySelector('.categories-container');
+const productsContainer = document.querySelector('.products-container');
+const renderedSectionName = document.querySelector('.rendered-section-name');
+const renderedSectionNameContainer = document.querySelector('.rendered-section-name-container');
 
 document.querySelector('.shop-name-header').addEventListener('click', () => {
   history.pushState(null, null, '/');
@@ -23,45 +30,6 @@ function darkMode() {
   });
 }
 
-function handleCategoriesClick(categoryName) {
-  const formattedCategoryName = handleUrlName(categoryName);
-  const updatedURL = `#/${encodeURIComponent(formattedCategoryName)}`;
-  history.pushState(null, null, updatedURL);
-  
-  const categoryProducts = getCategoryProducts(categoryName);
-  if(categoryProducts.length === 0) {
-    document.querySelector('.categories-container').innerHTML = '';
-    document.querySelector('.rendered-category-name-container').style.display = 'flex';
-    document.querySelector('.rendered-category-name').textContent = 'Sorry...  This category has not items at the moment.';
-    
-  } else {
-    document.querySelector('.rendered-category-name-container').style.display = 'flex';
-    document.querySelector('.rendered-category-name').textContent = categoryName;
-
-    let categoryProductsRender = ``;
-  
-    categoryProducts.forEach(categoryProduct => {
-      categoryProductsRender += `
-      <div class="each-product-container">
-        <div class="product-image-container">
-          <img src="${categoryProduct.image}" alt="Image is not available at the moment">
-        </div>
-        <h2>${categoryProduct.name}</h2>
-        <p class="product-description">${categoryProduct.description}</p>
-        <p class="product-price">L.E ${categoryProduct.price}</p>
-        <div class="add-to-cart-container">
-          <button>Add To Cart</button>
-        </div>
-      </div>
-      `
-    });
-  
-    document.querySelector('.categories-container').innerHTML = '';
-    document.querySelector('.products-container').innerHTML = categoryProductsRender;
-  }
-
-}
-
 function renderCategories() {
   let categoriesRender = '';
 
@@ -78,9 +46,11 @@ function renderCategories() {
       </div>
     `;
   });
-  document.querySelector('.categories-container').innerHTML = categoriesRender;
-  document.querySelector('.products-container').innerHTML = '';
-  document.querySelector('.rendered-category-name-container').style.display = 'none';
+  hideBodyContent();
+  renderedSectionNameContainer.classList.remove('hidden');
+  categoriesContainer.classList.remove('hidden');
+  categoriesContainer.innerHTML = categoriesRender;
+  renderedSectionName.textContent = 'Categories';
 
   document.querySelectorAll('.categories-showing').forEach(categoryDiv => {
     categoryDiv.addEventListener('click', () => {
@@ -90,21 +60,61 @@ function renderCategories() {
   });
 }
 
+function handleCategoriesClick(categoryName) {
+  const formattedCategoryName = handleUrlName(categoryName);
+  location.hash = `#/${encodeURIComponent(formattedCategoryName)}`;
+  
+  hideBodyContent();
+
+  const categoryProducts = getCategoryProducts(categoryName);
+  if(categoryProducts.length === 0) {
+    renderedSectionNameContainer.classList.remove('hidden');
+    renderedSectionName.textContent = 'Sorry...  This category has no items at the moment.';
+    
+  } else {
+    renderedSectionNameContainer.classList.remove('hidden');
+    renderedSectionName.textContent = categoryName;
+
+    let categoryProductsRender = ``;
+  
+    categoryProducts.forEach(categoryProduct => {
+      categoryProductsRender += `
+      <div class="each-product-container">
+        <div class="product-image-container">
+          <img src="${categoryProduct.image}" alt="Image is not available at the moment">
+        </div>
+        <h2>${categoryProduct.name}</h2>
+        <p class="product-description">${categoryProduct.description}</p>
+        <p class="product-price">L.E ${categoryProduct.price}</p>
+        <div class="add-to-cart-container">
+          <button class="add-to-cart-button" data-button-id="${categoryProduct.id}">Add To Cart</button>
+        </div>
+      </div>
+      `
+    });
+    
+    productsContainer.classList.remove('hidden');
+    productsContainer.innerHTML = categoryProductsRender;
+    addToCart();
+  }
+
+}
+
 darkMode();
 renderCategories();
 
-
 function getCategoryNameFromHash() {
-  const hash = location.hash.slice(2);
+  const hash = location.hash.slice(2); // Remove the '#/' part
   if (!hash) {
     return null;
   }
 
   const decodedHash = decodeURIComponent(hash);
-
-  return categories.find(category => handleUrlName(category.name) === decodedHash) || null;
+  const matchedCategory = categories.find(category => handleUrlName(category.name) === decodedHash);
+  return matchedCategory ? matchedCategory.name : null;
 }
 
+// Handle hash change events
 window.addEventListener('hashchange', () => {
   const categoryName = getCategoryNameFromHash();
   if (categoryName) {
@@ -114,6 +124,7 @@ window.addEventListener('hashchange', () => {
   }
 });
 
+// Initial page load and refreshing the page
 document.addEventListener('DOMContentLoaded', () => {
   const categoryName = getCategoryNameFromHash();
   if (categoryName) {
