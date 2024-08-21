@@ -1,7 +1,0 @@
-1. window.open('URL','target')
-
-Join this with an event listener and it will redirect to that URL 
-and choose the target(_self or _blank) for the URL 
-to open at the same tab or in a new tab.
-
-__________________________________________________________________________________________________

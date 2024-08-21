@@ -71,6 +71,7 @@
 
   font-size: 1.375rem;
 
+  box-sizing: border-box;
   border-radius: 0;
   border: var(--searchBorder);
   border-top-left-radius: 0.625rem; 

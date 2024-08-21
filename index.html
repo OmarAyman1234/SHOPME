@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
   <link rel="stylesheet" href="styles/navbar.css">
   <link rel="stylesheet" href="styles/cart.css">
+  <link rel="stylesheet" href="styles/checkout.css">
   <link rel="stylesheet" href="styles/categories.css">
   <link rel="stylesheet" href="styles/products.css">
   <link rel="stylesheet" href="styles/footer.css">
@@ -61,12 +62,37 @@
       
     </div>
     
-    <div class="cart-products-container">
-    
+    <div class="cart-checkout-container">
+      <div class="cart-products-container">
+
+      </div>
+      
+      <div class="checkout">
+        <h2>Checkout</h2>
+        <p class="empty-checkout-message"></p>
+        <div class="checkout-items">
+          <p class="checkout-items-number"></p>
+          <p class="checkout-items-price"></p>
+        </div>
+        <div class="checkout-shipping">
+          <p class="checkout-shipping-text">Shipping:</p>
+          <p class="checkout-shipping-price"></p>
+        </div>
+        <hr>
+        <div class="order-total">
+          <h3 class="order-total-text">Order Total:</h3>
+          <h3 class="order-total-price"></h3>
+        </div>
+        <button class="checkout-confirm">Confirm Purchase</button>
+      </div>
     </div>
     
   </div>
   
+
+  <div class="cart-total-price">
+
+  </div>
 
   <footer class="shopme-footer">
     <div class="footer-flex">
