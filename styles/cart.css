@@ -1,7 +1,7 @@
 :root {
   --cartProductBk: #f5faff;
   --cartProductNameColor: #003366;
-  --cartProductImgShadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
+  --cartProductImgShadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
   --cartQuantityColor: #1f1f1f;
 
   --cartUpdateQuantityColor: #0088cc;
@@ -16,7 +16,7 @@
 .dark-mode {
   --cartProductBk: #1e2a35; 
   --cartProductNameColor: #80d4ff;
-  --cartProductImgShadow: inset 0 0 50px rgba(230, 230, 230, 0.8);
+  --cartProductImgShadow: inset 0 0 50px rgba(255, 255, 255, 1);
   --cartQuantityColor: #cfcfcf;
 
   --cartUpdateQuantityColor: #66c2ff;
@@ -28,6 +28,11 @@
   --cartRemoveFromCartHoverColor: #cc5252;
 }
 
+.cart-checkout-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
 
 .cart-checkout-container {
   display: grid;

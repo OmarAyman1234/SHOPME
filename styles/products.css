@@ -1,7 +1,6 @@
 :root {
   --productsContainerBk: #fafafa;
   --productsContainerImgColor: #e0e0e0;
-  --productsContainerText: ;
 
   --addToCartBorder: 1px solid #007bbd;
   --addToCartHover: #009cda;
@@ -9,7 +8,6 @@
 .dark-mode {
   --productsContainerBk: #2e2e2e ;
   --productsContainerImgColor: #606060;
-  --productsContainerText: ;
 
   --addToCartBorder: 1px solid #9e9e00;
   --addToCartHover: #b3af00;

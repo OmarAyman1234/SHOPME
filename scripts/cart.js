@@ -1,10 +1,12 @@
 import { getProduct } from "../data/data.js";
 import { hideBodyContent } from "../utils/modifySections.js";
+import { compareDays, getOrderTime } from "../utils/timeFunctions.js";
 
 const cartButton = document.querySelector('.navbar-right-cart');
-const cartCheckoutContainer = document.querySelector('.cart-checkout-container');
+const cartCheckoutWrapper = document.querySelector('.cart-checkout-wrapper');
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cartHistory = JSON.parse(localStorage.getItem('cart-history')) || [];
 
 function calculateCartTotal() {
   const cartQuantityNav = document.querySelector('.nav-cart-quantity');
@@ -39,7 +41,7 @@ export function addToCart() {
       }
 
       calculateCartTotal();
-      checkout();
+      checkoutDisplay();
     });
   });
 }
@@ -70,7 +72,7 @@ export function renderCartProducts() {
             <h2>${cartProduct.product.name}</h2>
             <div class="cart-product-quantity-container">
               <p class="quantity quantity-${cartProduct.product.id}">Quantity: ${cartProduct.quantity}</p>
-              <input class="quantity-update-input quantity-update-input-${cartProduct.product.id} hidden">
+              <input type="number" class="quantity-update-input quantity-update-input-${cartProduct.product.id} hidden">
               <p class="save-quantity save-quantity-${cartProduct.product.id} hidden">Save</p>
               <p class="update-quantity update-quantity-${cartProduct.product.id}" data-update-quantity-id="${cartProduct.product.id}">Update</p>
             </div>
@@ -86,7 +88,7 @@ export function renderCartProducts() {
     });
   }
   document.querySelector('.rendered-section-name').textContent = 'Cart & Checkout'
-  cartCheckoutContainer.classList.remove('hidden');
+  cartCheckoutWrapper.classList.remove('hidden');
   document.querySelector('.cart-products-container').innerHTML = cartProductsHTML;
 
   updateProductQuantity();
@@ -128,7 +130,7 @@ function removeFromCart() {
       
       calculateCartTotal();
       renderCartProducts();
-      checkout();
+      checkoutDisplay();
     });
   });
 }
@@ -140,7 +142,7 @@ function saveHandler(updateQuantityId) {
 
     calculateCartTotal();
     renderCartProducts();
-    checkout();
+    checkoutDisplay();
   } else {
     let currentProduct = cart.find(productInCart => updateQuantityId === productInCart.product.id);
     currentProduct.quantity = Number(document.querySelector(`.quantity-update-input-${updateQuantityId}`).value);
@@ -152,11 +154,11 @@ function saveHandler(updateQuantityId) {
   
     localStorage.setItem('cart', JSON.stringify(cart));
     calculateCartTotal();
-    checkout();
+    checkoutDisplay();
   }
 }
 
-function checkout() {
+function checkoutDisplay() {
   let itemsNumber = 0, itemsTotal = 0, shipping = 50, orderTotal = 0;
   cart.forEach(cartItem => {
     itemsNumber += cartItem.quantity;
@@ -175,6 +177,154 @@ function checkout() {
 
     document.querySelector('.checkout-shipping-price').textContent = `L.E ${shipping}`;
     document.querySelector('.order-total-price').textContent = `L.E ${orderTotal}`;
+
   }
 }
-checkout();
+checkoutDisplay();
+confirmCheckoutButton();
+
+function confirmCheckoutButton() {
+  let orderId = JSON.parse(localStorage.getItem('order-id')) || 10000;
+  const orderTime = getOrderTime();
+
+  const confirmCheckout = document.querySelector('.checkout-confirm');
+
+  confirmCheckout.addEventListener('click', () => {
+    cartHistory.push({cart, orderId, time: orderTime});
+    localStorage.setItem('cart-history', JSON.stringify(cartHistory));
+
+    localStorage.removeItem('cart');
+    cart = [];
+
+    calculateCartTotal();
+    renderCartProducts();
+    checkoutDisplay();
+
+    //SAVE ID TO LOCAL STORAGE TO MAKE IT CHANGEABLE
+    orderId++;
+    localStorage.setItem('order-id', JSON.stringify(orderId));
+  });
+
+}
+
+document.querySelector('.cart-history-button').addEventListener('click', () => {
+  window.scrollTo(0, 0);
+  location.hash = '#/cart-history';
+  renderCartHistory();
+});
+
+export function renderCartHistory() {
+  hideBodyContent();
+  document.querySelector('.rendered-section-name').textContent = 'Cart History';
+
+  let cartHistoryHTML = '';
+
+  if(cartHistory.length === 0) {
+    cartHistoryHTML = `<p>You did not make any purchase.</p>`;
+  } else {
+    cartHistory.slice().reverse().forEach(item => {
+
+      
+      const timeFromOrdering = compareDays(item.time);
+
+      let totalPrice = 0;
+      item.cart.forEach(cartItem => {
+        totalPrice += cartItem.product.price;
+      }); 
+
+      let cartImages = [];
+      item.cart.slice().reverse().forEach(cartItem => {
+        if(cartImages.length > 5) {
+          return;
+        }
+        cartImages.push(cartItem.product.image);
+      });
+
+      let cartImagesHTML = '';
+      cartImages.forEach(image => {
+        cartImagesHTML += `<img src="${image}" alt="Purchased Product">`;
+      });
+
+      cartHistoryHTML += `
+        <div class="history-order" data-order-id="${item.orderId}">
+
+          <div class="history-order-info">
+            <h2 class="order-id">Order ID: ${item.orderId}</h2>
+            <h3 class="order-total">Order Total: L.E ${totalPrice + 50}</h3>
+            <h3 class="order-time">Order Time: ${item.time}</h3>
+          </div>
+      
+          <div class="history-order-products">
+            <div class="recent-order-images">
+              ${cartImagesHTML}
+            </div>
+            
+            <div class="order-delivery-status">
+              ${handleDeliveryStatus(timeFromOrdering)}
+            </div>
+
+          </div>
+      
+        </div>
+      `;
+    });
+  }
+  document.querySelector('.cart-history').classList.remove('hidden');
+  document.querySelector('.cart-history').innerHTML = cartHistoryHTML;
+
+  document.querySelectorAll('.history-order').forEach(order => {
+    order.addEventListener('click', () => {
+      const orderId = order.dataset.orderId;
+      location.hash = `#/cart-history/${orderId}`; 
+    });
+  });
+}
+renderCartHistory();
+
+
+function handleDeliveryStatus(timeFromOrdering) {
+  if(timeFromOrdering < 3) {
+    return `
+      <p class="status-label status-label-not-delivered">Not delivered yet</p>
+      <span class="order-status-icon error material-symbols-outlined">cancel</span>
+    `
+  } else {
+    return `
+      <p class="status-label">Delivered</p>
+      <span class="order-status-icon success material-symbols-outlined">check_circle</span>
+    `
+  }
+}
+
+
+
+export function renderOrderDetails(orderId) {
+  document.querySelector('.rendered-section-name').innerHTML = `Cart History (ID: ${orderId})`
+
+  //Two == because it is stringified I guess...
+  const selectedOrder = cartHistory.find(order => orderId == order.orderId);
+
+  if(!selectedOrder) {
+    console.log(`The order with ID ${orderId} was not found`);
+    return;
+  }
+
+  let orderHistoryHTML = '';
+
+  selectedOrder.cart.forEach(cartItem => {
+    orderHistoryHTML += `
+    <div class="order-history-item">
+      <img src="${cartItem.product.image}" alt="Product Image">
+      <div class="history-item-info">
+        <h2 class="history-item-name">${cartItem.product.name}</h2>
+        <p class="history-item-quantity">Quantity: ${cartItem.quantity}</p>
+        <p class="history-item-price">Price: L.E ${cartItem.product.price}</p>
+      </div>
+    </div>
+    `
+  }); 
+
+  document.querySelector('.cart-history').classList.add('hidden');
+  document.querySelector('.cart-order-history').innerHTML = orderHistoryHTML;
+  document.querySelector('.cart-order-history').classList.remove('hidden');
+}

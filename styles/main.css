@@ -18,6 +18,9 @@ body {
 
   --bodyBk: rgb(211, 211, 211);
   --bodyTextColor: #222;
+
+  --successColor: rgb(0, 160, 0);
+  --errorColor: rgb(220, 0, 0);
 }
 
 .dark-mode {

@@ -1,7 +1,7 @@
 import { categories, getCategoryProducts } from "../data/data.js";
 import { handleUrlName } from "../utils/handleUrlName.js";
 import { hideBodyContent } from "../utils/modifySections.js";
-import { addToCart, renderCartProducts } from "./cart.js";
+import { addToCart, renderCartProducts, renderCartHistory, renderOrderDetails } from "./cart.js";
 
 const categoriesContainer = document.querySelector('.categories-container');
 const productsContainer = document.querySelector('.products-container');
@@ -103,7 +103,6 @@ function handleCategoriesClick(categoryName) {
 }
 
 darkMode();
-renderCategories();
 
 function getCategoryNameFromHash() {
   const hash = location.hash.slice(2); // Remove the '#/' part
@@ -116,13 +115,24 @@ function getCategoryNameFromHash() {
   return matchedCategory ? matchedCategory.name : null;
 }
 
-// Handle hash change events
-window.addEventListener('hashchange', () => {
-  const hash = location.hash.slice(2);
-  if (hash === 'cart') {
+
+function handleHashChange() {
+  const hash = location.hash.slice(1); // Remove the leading '#'
+  const hashParts = hash.split('/').filter(part => part !== ''); // Split by '/' and remove empty parts
+
+  if (hashParts[0] === 'cart') {
     window.scrollTo(0,0);
     renderCartProducts();
-  } else {
+  } 
+  else if(hashParts[0] === 'cart-history' && hashParts[1]) {
+    window.scrollTo(0, 0);
+    renderOrderDetails(hashParts[1]);
+  } 
+  else if(hashParts[0] === 'cart-history') {
+    window.scrollTo(0, 0);
+    renderCartHistory();
+  }
+  else {
     const categoryName = getCategoryNameFromHash();
     if (categoryName) {
       handleCategoriesClick(categoryName);
@@ -130,20 +140,8 @@ window.addEventListener('hashchange', () => {
       renderCategories();
     }
   }
-});
+}
 
-// Initial page load and refreshing the page
-document.addEventListener('DOMContentLoaded', () => {
-  const hash = location.hash.slice(2);
-  if (hash === 'cart') {
-      window.scrollTo(0,0);
-    renderCartProducts();
-  } else {
-    const categoryName = getCategoryNameFromHash();
-    if (categoryName) {
-      handleCategoriesClick(categoryName);
-    } else {
-      renderCategories();
-    }
-  }
-});
+
+window.addEventListener('hashchange', handleHashChange);
+document.addEventListener('DOMContentLoaded', handleHashChange);
