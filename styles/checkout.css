@@ -53,7 +53,7 @@
 }
 
 .checkout button {
-  color: var(--buttonsColor);
+  color: var(--bodyTextColor);
   background-color: var(--primary);
 
   font-weight: bold;
@@ -81,3 +81,19 @@
 }
 
 
+/* .not-enough-balance .order-total-price {
+  color: var(--errorColor);
+}
+.not-enough-balance .checkout-button {
+  background-color: rgb(0, 130, 0);
+  color: #aaaaaa;
+  cursor: default;
+}
+.not-enough-balance .checkout-button:hover {
+  background-color: rgb(0, 130, 0);
+  color: #aaaaaa;
+}
+.not-enough-balance .checkout-button:active {
+  background-color: rgb(0, 130, 0);
+  color: #aaaaaa;
+} */

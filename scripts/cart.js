@@ -1,6 +1,7 @@
 import { getProduct } from "../data/data.js";
 import { hideBodyContent } from "../utils/modifySections.js";
 import { compareDays, getOrderTime } from "../utils/timeFunctions.js";
+import * as balanceManager from './balance.js';
 
 const cartButton = document.querySelector('.navbar-right-cart');
 const cartCheckoutWrapper = document.querySelector('.cart-checkout-wrapper');
@@ -143,7 +144,11 @@ function saveHandler(updateQuantityId) {
     calculateCartTotal();
     renderCartProducts();
     checkoutDisplay();
-  } else {
+  } 
+  else if(document.querySelector(`.quantity-update-input-${updateQuantityId}`).value < 0) {
+    alert('Quantity cannot be less than 0!');
+  } 
+  else {
     let currentProduct = cart.find(productInCart => updateQuantityId === productInCart.product.id);
     currentProduct.quantity = Number(document.querySelector(`.quantity-update-input-${updateQuantityId}`).value);
   
@@ -184,27 +189,36 @@ checkoutDisplay();
 confirmCheckoutButton();
 
 function confirmCheckoutButton() {
-  let orderId = JSON.parse(localStorage.getItem('order-id')) || 10000;
-  const orderTime = getOrderTime();
-
   const confirmCheckout = document.querySelector('.checkout-confirm');
 
   confirmCheckout.addEventListener('click', () => {
-    cartHistory.push({cart, orderId, time: orderTime});
-    localStorage.setItem('cart-history', JSON.stringify(cartHistory));
 
-    localStorage.removeItem('cart');
-    cart = [];
+    let orderTotal = 50;
+    cart.forEach(item => {
+      orderTotal += item.product.price * item.quantity;
+    });
 
-    calculateCartTotal();
-    renderCartProducts();
-    checkoutDisplay();
+    let balanceComparison = balanceManager.handlePurchaseConfirm(orderTotal);
+    
+    if(balanceComparison === 'success') {
+      let orderId = JSON.parse(localStorage.getItem('order-id')) || 10000;
+      const orderTime = getOrderTime();
 
-    //SAVE ID TO LOCAL STORAGE TO MAKE IT CHANGEABLE
-    orderId++;
-    localStorage.setItem('order-id', JSON.stringify(orderId));
+      cartHistory.push({cart, orderId, time: orderTime});
+      localStorage.setItem('cart-history', JSON.stringify(cartHistory));
+  
+      localStorage.removeItem('cart');
+      cart = [];
+  
+      calculateCartTotal();
+      renderCartProducts();
+      checkoutDisplay();
+  
+      //SAVE ID TO LOCAL STORAGE TO MAKE IT CHANGEABLE
+      orderId++;
+      localStorage.setItem('order-id', JSON.stringify(orderId));
+    }    
   });
-
 }
 
 document.querySelector('.cart-history-button').addEventListener('click', () => {

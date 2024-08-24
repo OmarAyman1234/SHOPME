@@ -2,6 +2,7 @@ import { categories, getCategoryProducts } from "../data/data.js";
 import { handleUrlName } from "../utils/handleUrlName.js";
 import { hideBodyContent } from "../utils/modifySections.js";
 import { addToCart, renderCartProducts, renderCartHistory, renderOrderDetails } from "./cart.js";
+import { addMoneyBalance } from "./balance.js";
 
 const categoriesContainer = document.querySelector('.categories-container');
 const productsContainer = document.querySelector('.products-container');
@@ -145,3 +146,34 @@ function handleHashChange() {
 
 window.addEventListener('hashchange', handleHashChange);
 document.addEventListener('DOMContentLoaded', handleHashChange);
+
+
+document.querySelector('.wallet-status').classList.add('hidden');
+
+document.querySelector('.navbar-right-wallet').addEventListener('click', () => {
+  document.querySelector('.wallet-status').classList.toggle('hidden');
+  document.querySelector('.navbar-tooltip-wallet').classList.toggle('hidden');
+
+});
+
+document.querySelector('.add-money-button').addEventListener('click', () => {
+  document.querySelector('.input-add-money').classList.remove('hidden');
+  document.querySelector('.update-money').classList.remove('hidden');
+  document.querySelector('.add-money-button').classList.add('hidden');
+});
+
+
+let balance = JSON.parse(localStorage.getItem('balance')) || 0;
+document.querySelector('.wallet-balance').innerHTML = `Balance: L.E ${balance}`;
+
+
+//Update money
+document.querySelector('.update-money').addEventListener('click', () => {
+  addMoneyBalance();
+});
+document.querySelector('.update-money').parentElement.addEventListener('keydown', (event) => {
+  if(event.key === 'Enter') {
+    addMoneyBalance();
+  }
+});
+
