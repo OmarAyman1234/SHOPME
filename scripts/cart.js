@@ -223,7 +223,7 @@ function confirmCheckoutButton() {
 
 document.querySelector('.cart-history-button').addEventListener('click', () => {
   window.scrollTo(0, 0);
-  location.hash = '#/cart-history';
+  location.hash = '#/cart/cart-history';
   renderCartHistory();
 });
 
@@ -289,7 +289,7 @@ export function renderCartHistory() {
   document.querySelectorAll('.history-order').forEach(order => {
     order.addEventListener('click', () => {
       const orderId = order.dataset.orderId;
-      location.hash = `#/cart-history/${orderId}`; 
+      location.hash = `#/cart/cart-history/${orderId}`; 
     });
   });
 }

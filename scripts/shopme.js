@@ -121,18 +121,18 @@ function handleHashChange() {
   const hash = location.hash.slice(1); // Remove the leading '#'
   const hashParts = hash.split('/').filter(part => part !== ''); // Split by '/' and remove empty parts
 
-  if (hashParts[0] === 'cart') {
-    window.scrollTo(0,0);
-    renderCartProducts();
-  } 
-  else if(hashParts[0] === 'cart-history' && hashParts[1]) {
+  if(hashParts[0] === 'cart' && hashParts[1] === 'cart-history' && hashParts[2]) {
     window.scrollTo(0, 0);
-    renderOrderDetails(hashParts[1]);
+    renderOrderDetails(hashParts[2]);
   } 
-  else if(hashParts[0] === 'cart-history') {
+  else if(hashParts[0] === 'cart' && hashParts[1] === 'cart-history') {
     window.scrollTo(0, 0);
     renderCartHistory();
   }
+  else if (hashParts[0] === 'cart') {
+    window.scrollTo(0,0);
+    renderCartProducts();
+  } 
   else {
     const categoryName = getCategoryNameFromHash();
     if (categoryName) {
