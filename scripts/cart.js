@@ -20,7 +20,7 @@ function calculateCartTotal() {
 calculateCartTotal();
 
 
-export function addToCart() {
+export function addToCartButton() {
   document.querySelectorAll('.add-to-cart-button').forEach(button => {
     button.addEventListener('click', () => {
       const buttonId = button.dataset.buttonId;

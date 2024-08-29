@@ -1,8 +1,9 @@
-import { categories, getCategoryProducts } from "../data/data.js";
+import { categories, getCategoryProducts, getProduct } from "../data/data.js";
 import { handleUrlName } from "../utils/handleUrlName.js";
 import { hideBodyContent } from "../utils/modifySections.js";
-import { addToCart, renderCartProducts, renderCartHistory, renderOrderDetails } from "./cart.js";
+import { addToCartButton, renderCartProducts, renderCartHistory, renderOrderDetails } from "./cart.js";
 import { addMoneyBalance } from "./balance.js";
+import * as favoritesControl from './favorites.js';
 
 const categoriesContainer = document.querySelector('.categories-container');
 const productsContainer = document.querySelector('.products-container');
@@ -48,7 +49,6 @@ function renderCategories() {
     `;
   });
   hideBodyContent();
-  renderedSectionNameContainer.classList.remove('hidden');
   categoriesContainer.classList.remove('hidden');
   categoriesContainer.innerHTML = categoriesRender;
   renderedSectionName.textContent = 'Categories';
@@ -71,6 +71,7 @@ function handleCategoriesClick(categoryName) {
   renderedSectionName.textContent = categoryName;
 
   let categoryProductsRender = ``;
+
   const categoryProducts = getCategoryProducts(categoryName);
   if(categoryProducts.length === 0) {
 
@@ -83,6 +84,7 @@ function handleCategoriesClick(categoryName) {
     categoryProducts.forEach(categoryProduct => {
       categoryProductsRender += `
       <div class="each-product-container">
+        <span class="material-symbols-outlined add-to-favorites add-to-favorites-${categoryProduct.id}" data-add-to-favorites-id="${categoryProduct.id}">favorite</span>
         <div class="product-image-container">
           <img src="${categoryProduct.image}" alt="Image is not available at the moment">
         </div>
@@ -98,10 +100,18 @@ function handleCategoriesClick(categoryName) {
     
     productsContainer.classList.remove('hidden');
     productsContainer.innerHTML = categoryProductsRender;
-    addToCart();
+    addToCartButton();
+    favoritesControl.initializeFavorites();
+    // favoritesControl.setupFavorites();
   }
-
 }
+
+
+
+
+document.querySelector('.navbar-favorites-container').addEventListener('click', () => {
+  favoritesControl.renderFavorites();
+});
 
 darkMode();
 
@@ -133,6 +143,11 @@ function handleHashChange() {
     window.scrollTo(0,0);
     renderCartProducts();
   } 
+  else if(hashParts[0] === 'favorites') {
+    window.scrollTo(0, 0);
+    favoritesControl.renderFavorites();
+    // favoritesControl.setupFavorites();
+  }
   else {
     const categoryName = getCategoryNameFromHash();
     if (categoryName) {

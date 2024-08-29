@@ -170,13 +170,13 @@
 }
 
 .navbar-dark-mode-container,
-.navbar-customer-service-container,
+.navbar-favorites-container,
 .navbar-wallet-container {
   position: relative;
 }
 
 .navbar-tooltip-dark-mode,
-.navbar-tooltip-customer-service,
+.navbar-tooltip-favorites,
 .navbar-tooltip-wallet,
 .navbar-tooltip-cart {
   opacity: 0;
@@ -199,8 +199,8 @@
   left: -1.25rem;
 }
 
-.navbar-tooltip-customer-service {
-  left: -2.8125rem;
+.navbar-tooltip-favorites {
+  left: -0.9rem;
 }
 
 .navbar-tooltip-wallet {
@@ -212,7 +212,7 @@
 }
 
 .navbar-dark-mode-container:hover .navbar-tooltip-dark-mode,
-.navbar-customer-service-container:hover .navbar-tooltip-customer-service,
+.navbar-favorites-container:hover .navbar-tooltip-favorites,
 .navbar-wallet-container:hover .navbar-tooltip-wallet,
 .cart-container:hover .navbar-tooltip-cart {
   opacity: 1;
@@ -268,3 +268,9 @@
   box-shadow: 0 0 0.625rem rgba(255, 255, 255, 0.1);
 }
 
+.favorites-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 1rem;
+  column-gap: 1rem;
+}

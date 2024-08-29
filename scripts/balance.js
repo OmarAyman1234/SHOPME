@@ -3,7 +3,11 @@ let balance = JSON.parse(localStorage.getItem('balance')) || 0;
 export function addMoneyBalance() {
   if(document.querySelector('.input-add-money').value < 0) {
     alert('Balance cannot be less than 0!');
-  } else {
+  } 
+  else if(document.querySelector('.input-add-money').value === '0') {
+    alert('Cannot add L.E 0!');
+  } 
+  else {
     balance += Number(document.querySelector('.input-add-money').value);
     localStorage.setItem('balance', JSON.stringify(balance));
     
