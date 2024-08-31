@@ -4,6 +4,16 @@ export function getProduct(productId) {
   return matchingProduct = products.find(product => product.id === productId);
 }
 
+export function getMatchedProducts(searchedText) {
+  let matchedProducts = [];
+  products.forEach(product => {
+    if(product.name.toLowerCase().includes(searchedText.toLowerCase())) {
+      matchedProducts.push(product);
+    }
+  });
+  return matchedProducts;
+}
+
 export function getCategoryProducts(categoryName) {
   let categoryProducts = [];
 

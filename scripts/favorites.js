@@ -66,7 +66,6 @@ export function activateFavoritesSection() {
       const addToFavoritesId = event.target.dataset.addToFavoritesId;
       removeFavorite(addToFavoritesId);
       event.target.closest('.each-product-container').remove();
-      console.log(favoriteProducts);
       if (favoriteProducts.length === 0) {
         renderEmptyFavorites();
       }
@@ -123,15 +122,18 @@ export function renderFavorites() {
   favoritesContainer.innerHTML = favoritesHTML;
 
   activateFavoritesSection();
-  addToCartButton();
+  // addToCartButton();
 }
 
 export function initializeFavorites() {
   loadFavorites();
   colorFavoritedProducts();
-  const productsContainer = document.querySelector('.products-container');
-  if (productsContainer) {
-    productsContainer.removeEventListener('click', handleFavoriteClick);
-    productsContainer.addEventListener('click', handleFavoriteClick);
-  }
+  const containers = [document.querySelector('.products-container'), document.querySelector('.search-container')];
+  containers.forEach(container => {
+    if (container) {
+      container.removeEventListener('click', handleFavoriteClick);
+      container.addEventListener('click', handleFavoriteClick);
+    }
+  })
+
 }

@@ -1,4 +1,4 @@
-import { categories, getCategoryProducts, getProduct } from "../data/data.js";
+import { categories, getCategoryProducts, getMatchedProducts } from "../data/data.js";
 import { handleUrlName } from "../utils/handleUrlName.js";
 import { hideBodyContent } from "../utils/modifySections.js";
 import { addToCartButton, renderCartProducts, renderCartHistory, renderOrderDetails } from "./cart.js";
@@ -10,10 +10,13 @@ const productsContainer = document.querySelector('.products-container');
 const renderedSectionName = document.querySelector('.rendered-section-name');
 const renderedSectionNameContainer = document.querySelector('.rendered-section-name-container');
 
+addToCartButton();
+
 document.querySelector('.shop-name-header').addEventListener('click', () => {
   history.pushState(null, null, '/');
   renderCategories();
 });
+
 
 function darkMode() {
   const toggleDarkMode = document.querySelector('.navbar-right-dark-mode');
@@ -22,14 +25,20 @@ function darkMode() {
   toggleDarkMode.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
 
-    if(document.body.classList.contains('dark-mode')) {
-      toggleDarkMode.textContent = 'light_mode';
-      darkModeTooltip.textContent = 'Light Mode';
-    } else {
-      toggleDarkMode.textContent = 'dark_mode';
-      darkModeTooltip.textContent = 'Dark Mode'
-    }
+    const isDarkMode = document.body.classList.contains('dark-mode');
+
+    toggleDarkMode.textContent = isDarkMode? 'dark_mode': 'light_mode';
+    darkModeTooltip.textContent = isDarkMode? 'Dark Mode': 'Light Mode';
+
+    localStorage.setItem('theme', JSON.stringify(isDarkMode));
   });
+
+  let savedThemeDark = JSON.parse(localStorage.getItem('theme'));
+  if(savedThemeDark) {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
+  }
 }
 
 function renderCategories() {
@@ -100,7 +109,7 @@ function handleCategoriesClick(categoryName) {
     
     productsContainer.classList.remove('hidden');
     productsContainer.innerHTML = categoryProductsRender;
-    addToCartButton();
+    // addToCartButton();
     favoritesControl.initializeFavorites();
     // favoritesControl.setupFavorites();
   }
@@ -146,7 +155,8 @@ function handleHashChange() {
   else if(hashParts[0] === 'favorites') {
     window.scrollTo(0, 0);
     favoritesControl.renderFavorites();
-    // favoritesControl.setupFavorites();
+  } else if(hashParts[0] === 'search-results') {
+    renderSearchResults();
   }
   else {
     const categoryName = getCategoryNameFromHash();
@@ -191,4 +201,58 @@ document.querySelector('.update-money').parentElement.addEventListener('keydown'
     addMoneyBalance();
   }
 });
+
+
+
+const searchButtonElement = document.querySelector('.search-button');
+searchButtonElement.addEventListener('click', () => {
+  location.hash = '#/search-results';
+  renderSearchResults();
+});
+
+document.querySelector('.search-navbar-input').parentElement.addEventListener('keydown', event => {
+  if(event.key === 'Enter') {
+    location.hash = '#/search-results';
+    renderSearchResults();
+  }
+});
+
+
+function renderSearchResults() {
+  window.scrollTo(0, 0);
+
+  hideBodyContent();
+
+  const searchInputElement = document.querySelector('.search-navbar-input');
+  let searchedText = searchInputElement.value;
+
+  let matchedProducts = getMatchedProducts(searchedText);
+
+  let searchResultsHTML = ``;
+
+  if(matchedProducts.length === 0 || searchInputElement.value === '') {
+    searchResultsHTML = `<p>' ${searchInputElement.value} ' didn't match any results.</p>`;
+  } else {
+    matchedProducts.forEach(matchedProduct => {
+      searchResultsHTML += `
+        <div class="each-product-container">
+          <span class="material-symbols-outlined add-to-favorites add-to-favorites-${matchedProduct.id} material-icons" data-add-to-favorites-id="${matchedProduct.id}">favorite</span>
+          <div class="product-image-container">
+            <img src="${matchedProduct.image}" alt="Image is not available at the moment">
+          </div>
+          <h2>${matchedProduct.name}</h2>
+          <p class="product-description">${matchedProduct.description}</p>
+          <p class="product-price">L.E ${matchedProduct.price}</p>
+          <div class="add-to-cart-container">
+            <button class="add-to-cart-button" data-button-id="${matchedProduct.id}">Add To Cart</button>
+          </div>
+        </div>
+      `;
+    });   
+  }
+  document.querySelector('.search-container').classList.remove('hidden');
+  document.querySelector('.search-container').innerHTML = searchResultsHTML;
+  renderedSectionName.textContent = `Search results for " ${searchedText} "`;
+  favoritesControl.initializeFavorites();
+}
 
