@@ -8,7 +8,9 @@ body {
   background-color: var(--bodyBk);
 
   margin: 0;
-  padding: 8rem 3rem 0 3rem;
+  padding: 7.5rem 3rem 0 3rem;
+
+  min-height: 100vh;
 }
 
 :root {
@@ -52,6 +54,21 @@ a:hover {
   text-decoration: underline;
 }
 
+.rendered-section-name-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 2rem;
+  border: 0.25rem solid rgb(205, 205, 205);
+  border-radius: 10px;
+  box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.8);
+}
+.dark-mode .rendered-section-name-container {
+  border: 0.25rem solid rgb(82, 82, 82);
+  box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.8);
+}
+
 .hidden {
   display: none !important;
 }
@@ -59,4 +76,19 @@ a:hover {
 ::selection {
   color: white;
   background-color: rgb(200, 0, 0);
+}
+@media (min-width: 320px) and (max-width: 659px) {
+  body {
+    padding-top: 0;
+  }
+}
+@media (min-width: 1440px) {
+  body {
+    font-size: 1.25rem;
+  }
+}
+@media (min-width: 2560px) {
+  body {
+    font-size: 1.5rem;
+  }
 }

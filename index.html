@@ -19,17 +19,23 @@
 <body>
 
   <!-- Navbar -->
-  <header class="navbar">
+  <nav class="navbar">
+
     <div class="navbar-left-section">
       <p class="shop-name-header" title="Return to the main page">SHOPME</p>
     </div>
 
     <div class="navbar-middle-section">
-       <input class="search-navbar-input" type="text" placeholder="Search For Products">
+      <input class="search-navbar-input" type="text" placeholder="Search" aria-label="Search">
       <button class="material-symbols-outlined search-button">search</button>
     </div>
 
     <div class="navbar-right-section">
+
+      <div class="navbar-menu-container">
+        <button class="material-symbols-outlined navbar-right-button">menu</button>
+      </div>
+
       <div class="navbar-dark-mode-container">
         <button class="material-symbols-outlined navbar-right-button navbar-right-dark-mode">dark_mode</button>
         <div class="navbar-tooltip-dark-mode">Dark Mode</div>
@@ -58,7 +64,7 @@
         <div class="navbar-tooltip-cart">Cart</div>
       </div>
     </div>
-  </header>
+  </nav>
 
 
   <div class="rendered-section-name-container">
