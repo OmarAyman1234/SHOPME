@@ -1,0 +1,36 @@
+.search-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 320px) {
+  .search-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 550px) {
+  .search-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 800px) {
+  .search-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .search-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 2000px) {
+  .search-container {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+  }
+}

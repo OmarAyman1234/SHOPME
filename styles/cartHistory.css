@@ -13,6 +13,7 @@
 }
 
 .cart-history-button {
+  align-self: flex-start;
   background-color: var(--searchFocus);
   border: var(--addToCartBorder);
   font-weight: bold;
@@ -56,20 +57,19 @@
   align-items: center;
 
   margin-bottom: 1rem;
-  padding: 0 1rem;
 }
 .history-order-info > * {
   flex: 1;
 }
 
-.order-id {
+.history-order-id {
   font-size: 1.25rem;
   font-weight: bold;
   color: var(--accentColor);
 }
 
-.order-total,
-.order-time {
+.history-order-total,
+.history-order-time {
   font-size: 1.1rem;
 }
 
@@ -78,14 +78,15 @@
   justify-content: space-between;
   align-items: center;
 
+  flex: 1;
   padding: 0 1rem;
 }
 
 .recent-order-images {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  flex: 1;
+  width: 100%;
 
   background-color: var(--historyImgsBk);
 
@@ -130,39 +131,53 @@
   background-color: rgba(255, 0, 0, 0.2);
 }
 
-
-.cart-order-history {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+.more-images-horizontal {
+  text-align: center;
 }
 
-.order-history-item {
-  display: flex;
-  border: 2px solid var(--accentColor);
-  height: 10rem;
-  background-color: var(--cartHistoryBk);
+@media (max-width: 425px) {
+  .history-order-info {
+    padding: 0 1rem;
+  }
+}
+@media (max-width: 718px) {
+  .history-order {
+    flex-direction: column;
+    padding: 0;
+  }
+  .history-order-info {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+  .history-order-info > * {
+    width: 100%;
+    text-align: center;
+  }
+  .history-order-products {
+    flex-direction: column;
+  }
+}
 
+@media (min-width: 719px) and (max-width: 1024px) {
+  .history-order {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .history-order-info {
+    flex-direction: column;
+    margin-bottom: 0;
+    width: 290px;
+  }
+  .history-order-info > * {
+    width: 100%;
+  }
+  .history-order-products {
+    flex-direction: column;
+  }
 }
-.order-history-item img {
-  width: 10rem; 
-  height: 100%; 
-  object-fit: contain;
-  margin-right: 1rem;
-  box-shadow: var(--cartProductImgShadow);
-}
-.history-item-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: start;
-}
-.history-item-info .history-item-name {
-  color: var(--accentColor);
-}
-.history-item-info .history-item-quantity {
-  font-weight: bold;
-}
-.history-item-info .history-item-price {
-  color: var(--cartPriceColor);
+@media (min-width: 1025px) {
+  .history-order-info > * {
+    width: 100%;
+    /* text-align: center; */
+  }
 }

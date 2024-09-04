@@ -1,0 +1,35 @@
+.cart-order-history {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.order-history-item {
+  display: flex;
+  border: 2px solid var(--accentColor);
+  height: 10rem;
+  background-color: var(--cartHistoryBk);
+
+}
+.order-history-item img {
+  width: 10rem; 
+  height: 100%; 
+  object-fit: contain;
+  margin-right: 1rem;
+  box-shadow: var(--cartProductImgShadow);
+}
+.history-item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+.history-item-info .history-item-name {
+  color: var(--accentColor);
+}
+.history-item-info .history-item-quantity {
+  font-weight: bold;
+}
+.history-item-info .history-item-price {
+  color: var(--cartPriceColor);
+}

@@ -15,6 +15,7 @@ addToCartButton();
 document.querySelector('.shop-name-header').addEventListener('click', () => {
   history.pushState(null, null, '/');
   renderCategories();
+  window.removeEventListener('resize', renderCartHistory);
 });
 
 
@@ -143,22 +144,28 @@ function handleHashChange() {
   if(hashParts[0] === 'cart' && hashParts[1] === 'cart-history' && hashParts[2]) {
     window.scrollTo(0, 0);
     renderOrderDetails(hashParts[2]);
+    window.removeEventListener('resize', renderCartHistory);
   } 
   else if(hashParts[0] === 'cart' && hashParts[1] === 'cart-history') {
     window.scrollTo(0, 0);
     renderCartHistory();
+    window.addEventListener('resize', renderCartHistory);
   }
   else if (hashParts[0] === 'cart') {
     window.scrollTo(0,0);
     renderCartProducts();
+    window.removeEventListener('resize', renderCartHistory);
   } 
   else if(hashParts[0] === 'favorites') {
     window.scrollTo(0, 0);
     favoritesControl.renderFavorites();
+    window.removeEventListener('resize', renderCartHistory);
   } else if(hashParts[0] === 'search-results') {
     renderSearchResults();
+    window.removeEventListener('resize', renderCartHistory);
   }
   else {
+    window.removeEventListener('resize', renderCartHistory);
     const categoryName = getCategoryNameFromHash();
     if (categoryName) {
       handleCategoriesClick(categoryName);

@@ -231,6 +231,43 @@ document.querySelector('.cart-history-button').addEventListener('click', () => {
   renderCartHistory();
 });
 
+function renderMaxHistoryProducts() {
+  if(window.matchMedia('(max-width: 355px)').matches) {
+    return 1;
+  }
+  if(window.matchMedia('(max-width: 464px)').matches) {
+    return 2;
+  }
+  else if(window.matchMedia('(max-width: 580px)').matches) {
+    return 3;
+  }
+  else if(window.matchMedia('(max-width: 718px)').matches) {
+    return 4;
+  }
+  else if(window.matchMedia('(max-width: 832px)').matches) {
+    return 3;
+  }
+  else if(window.matchMedia('(max-width: 944px)').matches) {
+    return 4;
+  }
+  else if(window.matchMedia('(max-width: 1024px)').matches) {
+    return 5;
+  } 
+  else {
+    return 6;
+  }
+} 
+
+function historyCartImagesCount(orderId) {
+  let historyCartImagesNumber = 0;
+
+  let foundCartHistory = cartHistory.find(cartOrder => cartOrder.orderId === orderId);
+
+  historyCartImagesNumber = foundCartHistory.cart.length;
+
+  return historyCartImagesNumber;
+}
+
 export function renderCartHistory() {
   hideBodyContent();
   document.querySelector('.rendered-section-name').textContent = 'Cart History';
@@ -241,8 +278,6 @@ export function renderCartHistory() {
     cartHistoryHTML = `<p>You did not make any purchase.</p>`;
   } else {
     cartHistory.slice().reverse().forEach(item => {
-
-      
       const timeFromOrdering = compareDays(item.time);
 
       let totalPrice = 0;
@@ -250,26 +285,37 @@ export function renderCartHistory() {
         totalPrice += cartItem.product.price;
       }); 
 
+      const maxRenderedItems = renderMaxHistoryProducts();
       let cartImages = [];
       item.cart.slice().reverse().forEach(cartItem => {
-        if(cartImages.length > 5) {
+        if(cartImages.length === maxRenderedItems - 1) {
           return;
         }
         cartImages.push(cartItem.product.image);
       });
 
+      let cartImagesNumber = historyCartImagesCount(item.orderId);
+
       let cartImagesHTML = '';
-      cartImages.forEach(image => {
-        cartImagesHTML += `<img src="${image}" alt="Purchased Product">`;
-      });
+      if(cartImages.length === 0) {
+        cartImagesHTML += `Products <span class="material-symbols-outlined more-images-horizontal">more_horiz</span>`
+      } else {
+        cartImages.forEach(image => {
+          cartImagesHTML += `<img src="${image}" alt="Purchased Product">`;
+        });
+        if(cartImagesNumber > maxRenderedItems - 1) {
+          cartImagesHTML += `<span class="material-symbols-outlined more-images-horizontal">more_horiz</span>`
+        }
+      }
+
 
       cartHistoryHTML += `
         <div class="history-order" data-order-id="${item.orderId}">
 
           <div class="history-order-info">
-            <h2 class="order-id">Order ID: ${item.orderId}</h2>
-            <h3 class="order-total">Order Total: L.E ${totalPrice + 50}</h3>
-            <h3 class="order-time">Order Time: ${item.time}</h3>
+            <h2 class="history-order-id">Order ID: ${item.orderId}</h2>
+            <h3 class="history-order-total">Order Total: L.E ${totalPrice + 50}</h3>
+            <h3 class="history-order-time">Order Time: ${item.time}</h3>
           </div>
       
           <div class="history-order-products">
@@ -297,7 +343,7 @@ export function renderCartHistory() {
     });
   });
 }
-renderCartHistory();
+// renderCartHistory();
 
 
 function handleDeliveryStatus(timeFromOrdering) {
@@ -317,6 +363,7 @@ function handleDeliveryStatus(timeFromOrdering) {
 
 
 export function renderOrderDetails(orderId) {
+  hideBodyContent();
   document.querySelector('.rendered-section-name').innerHTML = `Cart History (ID: ${orderId})`
 
   //Two == because it is stringified I guess...
@@ -342,7 +389,6 @@ export function renderOrderDetails(orderId) {
     `
   }); 
 
-  document.querySelector('.cart-history').classList.add('hidden');
   document.querySelector('.cart-order-history').innerHTML = orderHistoryHTML;
   document.querySelector('.cart-order-history').classList.remove('hidden');
 }
