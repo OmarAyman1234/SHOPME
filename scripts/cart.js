@@ -282,7 +282,7 @@ export function renderCartHistory() {
 
       let totalPrice = 0;
       item.cart.forEach(cartItem => {
-        totalPrice += cartItem.product.price;
+        totalPrice += cartItem.product.price * cartItem.quantity;
       }); 
 
       const maxRenderedItems = renderMaxHistoryProducts();
@@ -343,7 +343,6 @@ export function renderCartHistory() {
     });
   });
 }
-// renderCartHistory();
 
 
 function handleDeliveryStatus(timeFromOrdering) {
