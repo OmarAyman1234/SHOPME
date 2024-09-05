@@ -3,7 +3,7 @@ import { hideBodyContent } from "../utils/modifySections.js";
 import { compareDays, getOrderTime } from "../utils/timeFunctions.js";
 import * as balanceManager from './balance.js';
 
-const cartButton = document.querySelector('.navbar-right-cart');
+const cartButton = document.querySelector('.cart-container');
 const cartCheckoutWrapper = document.querySelector('.cart-checkout-wrapper');
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];

@@ -40,7 +40,7 @@
 
   padding: 0 1.5rem;
 
-  z-index: 1000;
+  z-index: 10;
 }
 
 .shop-name-header {
@@ -200,7 +200,7 @@
 
   white-space: nowrap;
   pointer-events: none;
-  z-index: 1000;
+  z-index: 10;
   
   transition: opacity 0.2s;
 }
@@ -290,15 +290,87 @@
   }
 }
 
-@media (min-width: 0) and (max-width: 659px) {
+
+@media (min-width: 320px) and (max-width: 659px) {
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.3s;
+    z-index: 9;
+  }
+  .overlay.sidebar-toggled {
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+  }
   .navbar {
     padding: 0 0.5rem;
+    position: relative;
   }
-  .navbar-dark-mode-container,
-  .navbar-favorites-container,
-  .navbar-wallet-container,
-  .cart-container {
-    display: none;
+  .navbar-close-menu-container {
+    width: 3.25rem;
+    height: 3.25rem;
+    display: flex;
+    align-items: center;
+  }
+  .navbar-close-menu {
+    padding: 0.25rem;
+    color: var(--primary);
+    background-color: var(--tooltipBk);
+    border-radius: 50%;
+    text-align: center;
+  }
+  .navbar-right-section.sidebar-toggled {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .navbar-right-section {
+    display: flex;
+    position: fixed;
+    width: 50vw;
+    background-color: var(--secondary);
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateX(100%);
+    opacity: 0;
+
+    transition: transform 0.3s, opacity 0.3s;
+    padding: 1rem 0 1rem 1rem;
+    z-index: 10;
+  }
+  .navbar-right-section > div {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:flex-start;
+    width: 100%;
+  }
+  .navbar-right-button,
+  .navbar-right-cart {
+    margin-right: 0.5rem;
+    height: 100%;
+    width: 3.25rem;
+  }
+
+  .navbar-tooltip-dark-mode,
+  .navbar-tooltip-favorites,
+  .navbar-tooltip-wallet,
+  .navbar-tooltip-cart {
+    opacity: 1;
+    position: static;
+    white-space: initial;
+    text-align: center;    
+    height: 100%;
+    padding: 1rem;
   }
 
   .navbar-left-section {
@@ -319,16 +391,30 @@
     flex: 0 0 1.5rem;
   }
 
-  .navbar-right-section {
+  .navbar-menu-container {
     width: auto;
   }
-  .navbar-right-button {
+  .navbar-menu-button {
     height: 2rem;
+    background-color: var(--primary);
+
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+}
+
+@media(max-width: 425px) {
+  .navbar-right-section {
+    width: 75vw;
   }
 }
 
 @media (min-width: 659px) {
   .navbar-menu-container {
+    display: none;
+  }
+  .navbar-close-menu-container {
     display: none;
   }
   .shop-name-header {

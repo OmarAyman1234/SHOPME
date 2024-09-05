@@ -18,27 +18,59 @@ document.querySelector('.shop-name-header').addEventListener('click', () => {
   window.removeEventListener('resize', renderCartHistory);
 });
 
+function toggleSideBar() {
+  const menuSidebar = document.querySelector('.navbar-menu-container');
+  const closeMenu = document.querySelector('.navbar-close-menu');
+  const navbarRightSection = document.querySelector('.navbar-right-section');
+  const overlayDiv = document.querySelector('.overlay');
+
+  overlayDiv.addEventListener('click', () => {
+    navbarRightSection.classList.remove('sidebar-toggled');
+    overlayDiv.classList.remove('sidebar-toggled');
+  });
+  menuSidebar.addEventListener('click', () => {
+    navbarRightSection.classList.add('sidebar-toggled')
+    overlayDiv.classList.add('sidebar-toggled');
+  });
+  
+  closeMenu.addEventListener('click', () => {
+    navbarRightSection.classList.remove('sidebar-toggled');
+    overlayDiv.classList.remove('sidebar-toggled');
+  });
+}
+toggleSideBar()
 
 function darkMode() {
-  const toggleDarkMode = document.querySelector('.navbar-right-dark-mode');
+  const toggleDarkMode = document.querySelector('.navbar-dark-mode-container');
+  const darkModeButton = document.querySelector('.navbar-right-dark-mode');
   const darkModeTooltip = document.querySelector('.navbar-tooltip-dark-mode');
 
+  let savedTheme = JSON.parse(localStorage.getItem('theme')) || 'dark';
+
+  applyTheme(savedTheme);
+
   toggleDarkMode.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-
-    const isDarkMode = document.body.classList.contains('dark-mode');
-
-    toggleDarkMode.textContent = isDarkMode? 'dark_mode': 'light_mode';
-    darkModeTooltip.textContent = isDarkMode? 'Dark Mode': 'Light Mode';
-
-    localStorage.setItem('theme', JSON.stringify(isDarkMode));
+    if(savedTheme === 'dark') {
+      savedTheme = 'light';
+    }
+    else if(savedTheme === 'light') {
+      savedTheme = 'dark';
+    }
+    applyTheme(savedTheme);
+    localStorage.setItem('theme', JSON.stringify(savedTheme));
   });
 
-  let savedThemeDark = JSON.parse(localStorage.getItem('theme'));
-  if(savedThemeDark) {
-    document.body.classList.add('dark-mode');
-  } else {
-    document.body.classList.remove('dark-mode');
+  function applyTheme(theme) {
+    if(theme === 'dark') {
+      document.body.classList.add('dark-mode');
+      darkModeButton.textContent = 'light_mode';
+      darkModeTooltip.textContent = 'Light Mode';
+    } 
+    else if(theme === 'light') {
+      document.body.classList.remove('dark-mode');
+      darkModeButton.textContent = 'dark_mode';
+      darkModeTooltip.textContent = 'Dark Mode';
+    }
   }
 }
 
