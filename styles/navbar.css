@@ -115,6 +115,7 @@
   width: 2.75rem;
   height: 2.75rem;
 
+  color: var(--bodyTextColor);
   background-color: var(--primary);
   
   border: none;
@@ -229,54 +230,7 @@
 }
 
 
-.wallet-status {
-  position: absolute;
-  top: 4.5rem;
-  left: -17rem;
 
-  width: 20rem;
-  
-  background-color: var(--productsContainerBk);
-
-  border-radius: 0.3125rem;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
-
-  padding-bottom: 0.625rem;
-}
-
-.wallet-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.wallet-balance {
-  margin-bottom: 0.625rem;
-  font-weight: bold;
-  font-size: 1.125rem;
-}
-
-.add-money-button {
-  color: #222;
-  background-color: var(--searchFocus);
-
-  border: none;
-  border-radius: 0.3125rem;
-
-  font-weight: bold;
-
-  padding: 0.375rem 0.75rem;
-  
-  cursor: pointer;
-}
-
-.add-money-button:hover {
-  background-color: var(--addToCartHover);
-}
-
-.dark-mode .wallet-status {
-  box-shadow: 0 0 0.625rem rgba(255, 255, 255, 0.1);
-}
 
 
 @media (min-width: 320px) {
@@ -323,6 +277,7 @@
     background-color: var(--tooltipBk);
     border-radius: 50%;
     text-align: center;
+    cursor: pointer;
   }
   .navbar-right-section.sidebar-toggled {
     transform: translateX(0);
@@ -331,7 +286,6 @@
   .navbar-right-section {
     display: flex;
     position: fixed;
-    width: 50vw;
     background-color: var(--secondary);
     flex-direction: column;
     align-items: start;
@@ -404,9 +358,19 @@
   }
 }
 
-@media(max-width: 425px) {
+@media (min-width: 320px) and (max-width: 375px) {
+  .navbar-right-section {
+    width: 90vw;
+  }
+}
+@media (min-width: 375px) and (max-width: 450px) {
   .navbar-right-section {
     width: 75vw;
+  }
+}
+@media (min-width: 450px) and (max-width: 659px) {
+  .navbar-right-section {
+    width: 60vw;
   }
 }
 

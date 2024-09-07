@@ -81,7 +81,13 @@ function removeFavorite(productId) {
 
 function renderEmptyFavorites() {
   const favoritesContainer = document.querySelector('.favorites-container');
-  favoritesContainer.innerHTML = '<p>You have no favorite products.</p>';
+  favoritesContainer.innerHTML = 
+  `
+    <div>
+      <p>You have no favorite products.</p>
+      <br> <br>
+    </div>
+  `;
 }
 
 export function renderFavorites() {

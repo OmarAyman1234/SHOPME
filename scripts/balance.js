@@ -14,7 +14,7 @@ export function addMoneyBalance() {
     document.querySelector('.wallet-balance').innerHTML = `Balance: L.E ${balance}`;
     document.querySelector('.input-add-money').value = '';
 
-    document.querySelector('.input-add-money').classList.add('hidden');
+    document.querySelector('.input-add-money-container').classList.add('hidden');
     document.querySelector('.update-money').classList.add('hidden');
     document.querySelector('.add-money-button').classList.remove('hidden');
   }

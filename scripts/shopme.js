@@ -45,7 +45,7 @@ function darkMode() {
   const darkModeButton = document.querySelector('.navbar-right-dark-mode');
   const darkModeTooltip = document.querySelector('.navbar-tooltip-dark-mode');
 
-  let savedTheme = JSON.parse(localStorage.getItem('theme')) || 'dark';
+  let savedTheme = JSON.parse(localStorage.getItem('theme')) || 'light';
 
   applyTheme(savedTheme);
 
@@ -117,7 +117,13 @@ function handleCategoriesClick(categoryName) {
   const categoryProducts = getCategoryProducts(categoryName);
   if(categoryProducts.length === 0) {
 
-    categoryProductsRender = 'There are no available items for this category at the moment...';
+    categoryProductsRender = 
+    `
+      <div>
+        <p>There are no available items for this category at the moment...</p> 
+        <br>
+      </div>
+    `;
     productsContainer.classList.remove('hidden');
     productsContainer.innerHTML = categoryProductsRender;
 
@@ -221,7 +227,7 @@ document.querySelector('.navbar-right-wallet').addEventListener('click', () => {
 });
 
 document.querySelector('.add-money-button').addEventListener('click', () => {
-  document.querySelector('.input-add-money').classList.remove('hidden');
+  document.querySelector('.input-add-money-container').classList.remove('hidden');
   document.querySelector('.update-money').classList.remove('hidden');
   document.querySelector('.add-money-button').classList.add('hidden');
 });
