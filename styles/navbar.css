@@ -59,9 +59,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   flex: 1;
-  margin: 0 2rem;
   max-width: 1000px;
+
+  margin: 0 2rem;
 }
 
 .search-navbar-input {
@@ -69,11 +71,14 @@
   flex: 1;
   height: 2.75rem;
 
-  font-size: 1.25rem;
   background-color: var(--searchBg);
   color: var(--bodyTextColor);
 
+  font-size: 1.25rem;
+  
+
   box-sizing: border-box;
+
   border-radius: 0;
   border: var(--searchBorder);
   border-top-left-radius: 0.625rem; 
@@ -82,7 +87,6 @@
 .search-navbar-input::placeholder {
   color: var(--searchPlaceHolderColor);
 }
-
 .search-navbar-input:focus,
 .search-navbar-input:active {
   outline: none;
@@ -108,6 +112,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   width: 14rem;
 }
 
@@ -120,6 +125,7 @@
   
   border: none;
   border-radius: 0.25rem;
+
   cursor: pointer;
 }
 
@@ -152,7 +158,6 @@
 
 .nav-cart-quantity {
   position: absolute;
-
   bottom: 1.5rem;
   left: 1.5rem;
 
@@ -160,12 +165,12 @@
   height: 1.5rem;
   line-height: 1.5rem;
 
+  text-align: center;
+
   color: var(--bodyTextColor);
   background-color: var(--primary);
 
   font-weight: bold;
-
-  text-align: center;
 
   border-radius: 50%;
 
@@ -188,8 +193,8 @@
 .navbar-tooltip-wallet,
 .navbar-tooltip-cart {
   opacity: 0;
-  position: absolute;
 
+  position: absolute;
   top: 4.5rem;
 
   color: var(--primary);
@@ -201,6 +206,7 @@
 
   white-space: nowrap;
   pointer-events: none;
+
   z-index: 10;
   
   transition: opacity 0.2s;
@@ -252,67 +258,94 @@
     bottom: 0;
     right: 0;
     left: 0;
-    pointer-events: none;
+
     background-color: rgba(0, 0, 0, 0);
-    transition: background-color 0.3s;
+
+    pointer-events: none;
+
     z-index: 9;
+    
+    transition: background-color 0.3s;
   }
   .overlay.sidebar-toggled {
     background-color: rgba(0, 0, 0, 0.5);
+
     pointer-events: auto;
   }
+
   .navbar {
-    padding: 0 0.5rem;
     position: relative;
+
+    padding: 0 0.5rem;
   }
   .navbar-close-menu-container {
-    width: 3.25rem;
-    height: 3.25rem;
     display: flex;
     align-items: center;
+
+    width: 3.25rem;
+    height: 3.25rem;
   }
   .navbar-close-menu {
-    padding: 0.25rem;
     color: var(--primary);
     background-color: var(--tooltipBk);
-    border-radius: 50%;
+
     text-align: center;
+
+    border-radius: 50%;
+
+    padding: 0.25rem;
+    
     cursor: pointer;
   }
+
+
   .navbar-right-section.sidebar-toggled {
-    transform: translateX(0);
     opacity: 1;
+
+    transform: translateX(0);
   }
+
   .navbar-right-section {
-    display: flex;
-    position: fixed;
-    background-color: var(--secondary);
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
+    opacity: 0;
+
     top: 0;
     right: 0;
     bottom: 0;
+
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+
+    background-color: var(--secondary);
+
     transform: translateX(100%);
-    opacity: 0;
+
+    padding: 1rem 0 1rem 1rem;
+
+    z-index: 10;
 
     transition: transform 0.3s, opacity 0.3s;
-    padding: 1rem 0 1rem 1rem;
-    z-index: 10;
   }
+
   .navbar-right-section > div {
-    margin-bottom: 1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content:flex-start;
+
     width: 100%;
+
+    margin-bottom: 1rem;
   }
+
   .navbar-right-button,
   .navbar-right-cart {
-    margin-right: 0.5rem;
-    height: 100%;
     width: 3.25rem;
+    height: 100%;
+
+    margin-right: 0.5rem;
   }
 
   .navbar-tooltip-dark-mode,
@@ -320,11 +353,16 @@
   .navbar-tooltip-wallet,
   .navbar-tooltip-cart {
     opacity: 1;
+
     position: static;
-    white-space: initial;
-    text-align: center;    
+    
     height: 100%;
+
+    text-align: center;    
+
     padding: 1rem;
+
+    white-space: initial;
   }
 
   .navbar-left-section {
@@ -350,10 +388,12 @@
   }
   .navbar-menu-button {
     height: 2rem;
+
     background-color: var(--primary);
 
     border: none;
     border-radius: 0.25rem;
+
     cursor: pointer;
   }
 }
@@ -389,6 +429,7 @@
 @media (min-width: 320px) and (max-width: 659px) {
   .navbar {
     position: static;
+    
     margin: 0 -3rem 2rem -3rem;
   }
 }

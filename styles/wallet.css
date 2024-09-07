@@ -11,16 +11,21 @@
   
   background-color: var(--productsContainerBk);
 
-  border-radius: 0.3125rem;
   box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+
+  border-radius: 0.3125rem;
 
   padding-bottom: 0.625rem;
 }
+.dark-mode .wallet-status {
+  box-shadow: 0 0 0.625rem rgba(255, 255, 255, 0.1);
+}
 
 .wallet-balance {
-  margin-bottom: 0.625rem;
   font-weight: bold;
   font-size: 1.125rem;
+
+  margin-bottom: 0.625rem;
 }
 
 .add-money-container {
@@ -58,24 +63,27 @@
 
 .input-add-money-container {
   display: flex;
+
   height: 25px;
 }
 .input-add-money {
   height: 100%;
 
   box-sizing: border-box;
+
   border: 1px solid var(--accentColor);
   border-radius: 0.3125rem;
 }
-.dark-mode .wallet-status {
-  box-shadow: 0 0 0.625rem rgba(255, 255, 255, 0.1);
-}
+
+
 
 @media(max-width: 659px) {
   .wallet-status {
     position: static;
+
     width: 70%;
   }
+
   .add-money-container {
     flex-direction: column;
 
@@ -83,6 +91,7 @@
     
     padding: 0 1rem;
   }
+
   .input-add-money-container {
     height: auto;
   }
@@ -91,5 +100,4 @@
     margin-bottom: 0.5rem;
     height: 22px;
   }
-
 }

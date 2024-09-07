@@ -4,6 +4,8 @@
   gap: 1rem;
 }
 
+
+
 @media (min-width: 320px) {
   .search-container {
     grid-template-columns: 1fr;

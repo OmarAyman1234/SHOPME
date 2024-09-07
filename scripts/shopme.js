@@ -23,7 +23,17 @@ function toggleSideBar() {
   const closeMenu = document.querySelector('.navbar-close-menu');
   const navbarRightSection = document.querySelector('.navbar-right-section');
   const overlayDiv = document.querySelector('.overlay');
+  const favContainerNav = document.querySelector('.navbar-favorites-container');
+  const cartContainerNav = document.querySelector('.cart-container');
 
+  favContainerNav.addEventListener('click', () => {
+    navbarRightSection.classList.remove('sidebar-toggled');
+    overlayDiv.classList.remove('sidebar-toggled');
+  });
+  cartContainerNav.addEventListener('click', () => {
+    navbarRightSection.classList.remove('sidebar-toggled');
+    overlayDiv.classList.remove('sidebar-toggled');
+  });
   overlayDiv.addEventListener('click', () => {
     navbarRightSection.classList.remove('sidebar-toggled');
     overlayDiv.classList.remove('sidebar-toggled');

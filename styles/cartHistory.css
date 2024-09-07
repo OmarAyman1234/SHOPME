@@ -12,14 +12,21 @@
   --historyImgsBorder: 2px solid #4f6a79;
 }
 
+
 .cart-history-button {
   align-self: flex-start;
+
   background-color: var(--searchFocus);
-  border: var(--addToCartBorder);
+
+  
   font-weight: bold;
+  
+  border: var(--addToCartBorder);
   border-radius: 8px;
+
   margin-bottom: 1rem;
   padding: 1rem 1.5rem;
+
   cursor: pointer;
 }
 .cart-history-button:hover {
@@ -28,7 +35,6 @@
 .cart-history-button:active {
   background-color: var(--searchFocus);
 }
-
 
 
 .history-order {
@@ -63,9 +69,10 @@
 }
 
 .history-order-id {
+  color: var(--accentColor);
+
   font-size: 1.25rem;
   font-weight: bold;
-  color: var(--accentColor);
 }
 
 .history-order-total,
@@ -79,6 +86,7 @@
   align-items: center;
 
   flex: 1;
+
   padding: 0 1rem;
 }
 
@@ -86,6 +94,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
   width: 100%;
 
   background-color: var(--historyImgsBk);
@@ -100,6 +109,7 @@
   width: 7rem;
   height: 6rem;
   object-fit: contain;
+
   border-radius: 8px;
 }
 
@@ -117,7 +127,9 @@
 
 .order-status-icon {
   font-size: 1.5rem;
+
   border-radius: 50%;
+
   padding: 0.1rem;
 }
 
@@ -135,22 +147,28 @@
   text-align: center;
 }
 
+
+
 @media (max-width: 425px) {
   .history-order-info {
     padding: 0 1rem;
   }
 }
+
 @media (max-width: 718px) {
   .history-order {
     flex-direction: column;
+
     padding: 0;
   }
   .history-order-info {
     flex-direction: column;
+
     margin-bottom: 0;
   }
   .history-order-info > * {
     width: 100%;
+
     text-align: center;
   }
   .history-order-products {
@@ -165,8 +183,10 @@
   }
   .history-order-info {
     flex-direction: column;
-    margin-bottom: 0;
+    
     width: 290px;
+
+    margin-bottom: 0;
   }
   .history-order-info > * {
     width: 100%;
@@ -175,9 +195,9 @@
     flex-direction: column;
   }
 }
+
 @media (min-width: 1025px) {
   .history-order-info > * {
     width: 100%;
-    /* text-align: center; */
   }
 }
