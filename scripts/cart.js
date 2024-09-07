@@ -1,7 +1,7 @@
 import { getProduct } from "../data/data.js";
 import { hideBodyContent } from "../utils/modifySections.js";
 import { compareDays, getOrderTime } from "../utils/timeFunctions.js";
-import * as balanceManager from './balance.js';
+import { balanceObject } from './balance.js';
 
 const cartButton = document.querySelector('.cart-container');
 const cartCheckoutWrapper = document.querySelector('.cart-checkout-wrapper');
@@ -18,6 +18,7 @@ function calculateCartTotal() {
   cartQuantityNav.textContent = cartTotal;
 }
 calculateCartTotal();
+
 
 let isAddToCartInitialized = false;
 export function addToCartButton() {
@@ -37,11 +38,10 @@ export function addToCartButton() {
       
       if(matchingItem) {
         matchingItem.quantity ++;
-        localStorage.setItem('cart', JSON.stringify(cart));
       } else {
         cart.push({product: clickedProduct, quantity: 1});
-        localStorage.setItem('cart', JSON.stringify(cart));
       }
+      localStorage.setItem('cart', JSON.stringify(cart));
 
       calculateCartTotal();
       checkoutDisplay();
@@ -51,11 +51,13 @@ export function addToCartButton() {
   isAddToCartInitialized = true;
 }
 
+
 cartButton.addEventListener('click', () => {
   window.scrollTo(0,0);
   location.hash = '#/cart'
   renderCartProducts();
 });
+
 
 export function renderCartProducts() {
   hideBodyContent();
@@ -75,13 +77,15 @@ export function renderCartProducts() {
 
           <div class="cart-product-text-info">
             <h2>${cartProduct.product.name}</h2>
+
             <div class="cart-product-quantity-container">
               <p class="quantity quantity-${cartProduct.product.id}">Quantity: ${cartProduct.quantity}</p>
               <input type="number" class="quantity-update-input quantity-update-input-${cartProduct.product.id} hidden">
               <p class="save-quantity save-quantity-${cartProduct.product.id} hidden">Save</p>
               <p class="update-quantity update-quantity-${cartProduct.product.id}" data-update-quantity-id="${cartProduct.product.id}">Update</p>
             </div>
-              <p class="price price-${cartProduct.product.id}">Price: L.E ${cartProduct.product.price}</p>
+
+            <p class="price price-${cartProduct.product.id}">Price: L.E ${cartProduct.product.price}</p>
           </div>
 
           <div class="remove-product-container">
@@ -100,21 +104,23 @@ export function renderCartProducts() {
   removeFromCart();
 }
 
-function updateProductQuantity() {
 
+function updateProductQuantity() {
   document.querySelectorAll('.update-quantity').forEach(updateQuantityBtn => {
     updateQuantityBtn.addEventListener('click', () =>  {
       const updateQuantityId = updateQuantityBtn.dataset.updateQuantityId;
 
       document.querySelector(`.update-quantity-${updateQuantityId}`).classList.add('hidden');
+
       document.querySelector(`.save-quantity-${updateQuantityId}`).classList.remove('hidden');
       document.querySelector(`.quantity-update-input-${updateQuantityId}`).classList.remove('hidden');
       document.querySelector(`.quantity-update-input-${updateQuantityId}`).value = '';
 
-
+      //Mouse click handling
       document.querySelector(`.save-quantity-${updateQuantityId}`).addEventListener('click', () => {
         saveHandler(updateQuantityId);
       });
+      //Enter Key handling
       document.querySelector(`.save-quantity-${updateQuantityId}`).parentElement.addEventListener('keydown', (event) => {
         if(event.key === 'Enter') {
           saveHandler(updateQuantityId);
@@ -157,6 +163,7 @@ function saveHandler(updateQuantityId) {
     currentProduct.quantity = Number(document.querySelector(`.quantity-update-input-${updateQuantityId}`).value);
   
     document.querySelector(`.update-quantity-${updateQuantityId}`).classList.remove('hidden');
+
     document.querySelector(`.save-quantity-${updateQuantityId}`).classList.add('hidden');
     document.querySelector(`.quantity-update-input-${updateQuantityId}`).classList.add('hidden');
     document.querySelector(`.quantity-${updateQuantityId}`).textContent = `Quantity: ${currentProduct.quantity}`;
@@ -186,7 +193,6 @@ function checkoutDisplay() {
 
     document.querySelector('.checkout-shipping-price').textContent = `L.E ${shipping}`;
     document.querySelector('.order-total-price').textContent = `L.E ${orderTotal}`;
-
   }
 }
 checkoutDisplay();
@@ -202,7 +208,7 @@ function confirmCheckoutButton() {
       orderTotal += item.product.price * item.quantity;
     });
 
-    let balanceComparison = balanceManager.handlePurchaseConfirm(orderTotal);
+    let balanceComparison = balanceObject.handlePurchaseConfirm(orderTotal);
     
     if(balanceComparison === 'success') {
       let orderId = JSON.parse(localStorage.getItem('order-id')) || 10000;
@@ -219,7 +225,7 @@ function confirmCheckoutButton() {
       checkoutDisplay();
   
       //SAVE ID TO LOCAL STORAGE TO MAKE IT CHANGEABLE
-      orderId++;
+      orderId ++;
       localStorage.setItem('order-id', JSON.stringify(orderId));
     }    
   });
@@ -308,7 +314,6 @@ export function renderCartHistory() {
         }
       }
 
-
       cartHistoryHTML += `
         <div class="history-order" data-order-id="${item.orderId}">
 
@@ -365,8 +370,7 @@ export function renderOrderDetails(orderId) {
   hideBodyContent();
   document.querySelector('.rendered-section-name').innerHTML = `Cart History (ID: ${orderId})`
 
-  //Two == because it is stringified I guess...
-  const selectedOrder = cartHistory.find(order => orderId == order.orderId);
+  const selectedOrder = cartHistory.find(order => orderId === order.orderId.toString());
 
   if(!selectedOrder) {
     console.log(`The order with ID ${orderId} was not found`);
@@ -375,7 +379,7 @@ export function renderOrderDetails(orderId) {
 
   let orderHistoryHTML = '';
 
-  selectedOrder.cart.forEach(cartItem => {
+  selectedOrder.cart.slice().reverse().forEach(cartItem => {
     orderHistoryHTML += `
     <div class="order-history-item">
       <img src="${cartItem.product.image}" alt="Product Image">

@@ -1,6 +1,5 @@
 import { getProduct } from "../data/data.js";
 import { hideBodyContent } from "../utils/modifySections.js";
-import { addToCartButton } from "./cart.js";
 
 let favoriteProducts = [];
 

@@ -15,35 +15,6 @@ export function getOrderTime() {
   return orderDate;
 }
 
-function getDayText() {
-  const date = new Date();
-  let orderDay = '';
-
-  if(date.getDay() === 0) {
-    orderDay = 'Sunday';
-  } 
-  else if(date.getDay() === 1) {
-    orderDay = 'Monday';
-  }
-  else if(date.getDay() === 2) {
-    orderDay = 'Tuesday';
-  }
-  else if(date.getDay() === 3) {
-    orderDay = 'Wednesday';
-  }
-  else if(date.getDay() === 4) {
-    orderDay = 'Thursday';
-  }
-  else if(date.getDay() === 5) {
-    orderDay = 'Friday';
-  }
-  else if(date.getDay() === 6) {
-    orderDay = 'Saturday';
-  }
-
-  return orderDay;
-}
-
 function getMonthText() {
   const date = new Date();
 
@@ -97,4 +68,33 @@ export function compareDays(inputTime) {
   const differenceInDays = differenceInTime/(1000 * 60 * 60 * 24);
 
   return differenceInDays;
+}
+
+function getDayText() {
+  const date = new Date();
+  let orderDay = '';
+
+  if(date.getDay() === 0) {
+    orderDay = 'Sunday';
+  } 
+  else if(date.getDay() === 1) {
+    orderDay = 'Monday';
+  }
+  else if(date.getDay() === 2) {
+    orderDay = 'Tuesday';
+  }
+  else if(date.getDay() === 3) {
+    orderDay = 'Wednesday';
+  }
+  else if(date.getDay() === 4) {
+    orderDay = 'Thursday';
+  }
+  else if(date.getDay() === 5) {
+    orderDay = 'Friday';
+  }
+  else if(date.getDay() === 6) {
+    orderDay = 'Saturday';
+  }
+
+  return orderDay;
 }

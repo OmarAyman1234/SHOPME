@@ -1,16 +1,16 @@
 export function getProduct(productId) {
-  let matchingProduct;
-
-  return matchingProduct = products.find(product => product.id === productId);
+  return products.find(product => product.id === productId);
 }
 
 export function getMatchedProducts(searchedText) {
   let matchedProducts = [];
+
   products.forEach(product => {
     if(product.name.toLowerCase().includes(searchedText.toLowerCase())) {
       matchedProducts.push(product);
     }
   });
+
   return matchedProducts;
 }
 
@@ -25,6 +25,8 @@ export function getCategoryProducts(categoryName) {
 
   return categoryProducts;
 }
+
+
 
 export const categories = [
   {
@@ -198,8 +200,6 @@ const products = [
     price: 180,
     description: 'A red teapot'
   },
-
-
   {
     type: 'clothing',
     id: '1018',
