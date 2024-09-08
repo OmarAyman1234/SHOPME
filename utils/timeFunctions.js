@@ -65,6 +65,7 @@ export function compareDays(inputTime) {
 
   const differenceInTime = currentTime - givenTime;
 
+  //24 => hrs, 60 => minutes, 60 => seconds, 1000 => milliseconds, 
   const differenceInDays = differenceInTime/(1000 * 60 * 60 * 24);
 
   return differenceInDays;

@@ -2,6 +2,7 @@ import { balanceObject } from "./balance.js";
 import { getMatchedProducts } from "../data/data.js";
 import * as favoritesControl from './favorites.js';
 import { hideBodyContent } from "../utils/modifySections.js";
+import { callToast } from "../utils/toast.js";
 
 const renderedSectionName = document.querySelector('.rendered-section-name');
 
@@ -47,9 +48,11 @@ export function darkMode() {
 
   toggleDarkMode.addEventListener('click', () => {
     if(savedTheme === 'dark') {
+      callToast('Switched to light mode.', 'toast-normal', 'light_mode');
       savedTheme = 'light';
     }
     else if(savedTheme === 'light') {
+      callToast('Switched to dark mode.', 'toast-normal', 'dark_mode');
       savedTheme = 'dark';
     }
     applyTheme(savedTheme);

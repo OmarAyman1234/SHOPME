@@ -1,15 +1,19 @@
+import { callToast } from "../utils/toast.js";
+
 export const balanceObject = {
   balance: JSON.parse(localStorage.getItem('balance')) || 0,
 
   addMoneyBalance() {
-    if(document.querySelector('.input-add-money').value < 0) {
-      alert('Balance cannot be less than 0!');
+    let addedBalance = Number(document.querySelector('.input-add-money').value);
+    if(addedBalance < 0) {
+      callToast('Balance cannot be less than 0!', 'toast-invalid', 'error');
     } 
-    else if(document.querySelector('.input-add-money').value === '0') {
-      alert('Cannot add L.E 0!');
+    else if(addedBalance === 0 || addedBalance === '') {
+      callToast('Cannot add L.E 0!', 'toast-invalid', 'error');
     } 
     else {
-      this.balance += Number(document.querySelector('.input-add-money').value);
+      this.balance += addedBalance;
+      callToast(`Added L.E ${addedBalance}.`, 'toast-success', 'attach_money');
       localStorage.setItem('balance', JSON.stringify(this.balance));
       
       document.querySelector('.wallet-balance').innerHTML = `Balance: L.E ${this.balance}`;
@@ -28,7 +32,7 @@ export const balanceObject = {
       document.querySelector('.wallet-balance').innerHTML = `Balance: L.E ${this.balance}`;
       return 'success';
     } else {
-      alert(`Not enough balance, you need L.E ${orderTotal - this.balance} to continue this purchase.`);
+      callToast(`Not enough balance, you need L.E ${orderTotal - this.balance} to continue this purchase.`, 'toast-invalid', 'error');
       return 'failure'
     }
   }

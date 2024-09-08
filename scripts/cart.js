@@ -1,6 +1,7 @@
 import { getProduct } from "../data/data.js";
 import { hideBodyContent } from "../utils/modifySections.js";
 import { compareDays, getOrderTime } from "../utils/timeFunctions.js";
+import { callToast } from "../utils/toast.js";
 import { balanceObject } from './balance.js';
 
 const cartButton = document.querySelector('.cart-container');
@@ -45,6 +46,7 @@ export function addToCartButton() {
 
       calculateCartTotal();
       checkoutDisplay();
+      callToast('Added to cart', 'toast-normal', 'add_shopping_cart');
     }
   });
 
@@ -142,6 +144,7 @@ function removeFromCart() {
       calculateCartTotal();
       renderCartProducts();
       checkoutDisplay();
+      callToast('Removed From Cart', 'toast-normal', 'remove_shopping_cart', 'material-symbols-outlined');
     });
   });
 }
@@ -154,9 +157,10 @@ function saveHandler(updateQuantityId) {
     calculateCartTotal();
     renderCartProducts();
     checkoutDisplay();
+    callToast('Removed From Cart', 'toast-normal', 'remove_shopping_cart', 'material-symbols-outlined');
   } 
   else if(document.querySelector(`.quantity-update-input-${updateQuantityId}`).value < 0) {
-    alert('Quantity cannot be less than 0!');
+    callToast('Quantity cannot be less than 0!', 'toast-invalid', 'error');
   } 
   else {
     let currentProduct = cart.find(productInCart => updateQuantityId === productInCart.product.id);
@@ -171,6 +175,7 @@ function saveHandler(updateQuantityId) {
     localStorage.setItem('cart', JSON.stringify(cart));
     calculateCartTotal();
     checkoutDisplay();
+    callToast('Cart item quantity updated', 'toast-normal', 'shopping_cart');
   }
 }
 
@@ -223,8 +228,8 @@ function confirmCheckoutButton() {
       calculateCartTotal();
       renderCartProducts();
       checkoutDisplay();
-  
-      //SAVE ID TO LOCAL STORAGE TO MAKE IT CHANGEABLE
+      callToast('Purchase successful! Your order will be delivered within 3 days!', 'toast-success', 'check_circle')
+      //SAVE ID TO LOCAL STORAGE TO MAKE ID CHANGEABLE
       orderId ++;
       localStorage.setItem('order-id', JSON.stringify(orderId));
     }    
@@ -349,7 +354,7 @@ export function renderCartHistory() {
   });
 }
 
-
+//If three days pass the text will be delivered with a green tick
 function handleDeliveryStatus(timeFromOrdering) {
   if(timeFromOrdering < 3) {
     return `
@@ -373,7 +378,7 @@ export function renderOrderDetails(orderId) {
   const selectedOrder = cartHistory.find(order => orderId === order.orderId.toString());
 
   if(!selectedOrder) {
-    console.log(`The order with ID ${orderId} was not found`);
+    callToast(`The order with ID ${orderId} was not found`, 'toast-error', 'cancel');
     return;
   }
 

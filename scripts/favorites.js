@@ -1,5 +1,6 @@
 import { getProduct } from "../data/data.js";
 import { hideBodyContent } from "../utils/modifySections.js";
+import { callToast } from "../utils/toast.js";
 
 let favoriteProducts = [];
 
@@ -43,11 +44,13 @@ function toggleFavorite(productId, iconElement) {
   if (clickedProductIndex !== -1) {
     iconElement.classList.remove('material-icons');
     favoriteProducts.splice(clickedProductIndex, 1);
+    callToast('Removed From favorites', 'toast-normal', 'heart_minus', 'material-symbols-outlined');
   } else {
     iconElement.classList.add('material-icons');
     const productToAdd = getProduct(productId);
     if (productToAdd) {
       favoriteProducts.push(productToAdd);
+      callToast('Added to favorites', 'toast-normal', 'heart_plus', 'material-symbols-outlined');
     }
   }
 
@@ -75,6 +78,7 @@ export function activateFavoritesSection() {
 function removeFavorite(productId) {
   loadFavorites();
   favoriteProducts = favoriteProducts.filter(product => product.id !== productId);
+  callToast('Removed From favorites', 'toast-normal', 'heart_minus', 'material-symbols-outlined');
   saveFavorites();
 }
 

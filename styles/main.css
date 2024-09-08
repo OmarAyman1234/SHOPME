@@ -23,6 +23,7 @@ body {
 
   --successColor: rgb(0, 160, 0);
   --errorColor: rgb(220, 0, 0);
+  --invalidColor: rgb(230, 158, 25);
 }
 
 .dark-mode {

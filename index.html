@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="styles/toast.css">
   <link rel="stylesheet" href="styles/navbar.css">
   <link rel="stylesheet" href="styles/search.css">
   <link rel="stylesheet" href="styles/favorites.css">
@@ -20,12 +21,6 @@
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <!-- Overlays all elements except mobile sidebar -->
-  <div class="overlay">
-    
-  </div>
-
-  <!-- Navbar -->
   <nav class="navbar">
 
     <div class="navbar-left-section">
@@ -69,9 +64,9 @@
         </div>
       </div>
       <div class="cart-container">
-        <button class="material-symbols-outlined navbar-right-cart">shopping_cart</button>
+        <button class="material-symbols-outlined navbar-right-cart">shopping_cart_checkout</button>
         <div class="nav-cart-quantity">0</div>
-        <div class="navbar-tooltip-cart">Cart</div>
+        <div class="navbar-tooltip-cart">Cart & Checkout</div>
       </div>
     </div>
   </nav>
@@ -139,6 +134,14 @@
     </section>
   </main>
 
+  <!-- Overlays all elements except smaller screens sidebar -->
+  <div class="overlay">
+  
+  </div>
+
+  <div class="toast">
+    
+  </div>
 
   <footer class="shopme-footer">
     <div class="footer-flex">
