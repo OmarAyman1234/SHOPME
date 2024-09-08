@@ -100,7 +100,7 @@ const products = [
     type: 'kitchenware',
     id: '1005',
     name: 'Hand Mixer',
-    image: './Images/kitchenware/hand-mixer.png',
+    image: './Images/kitchenware/Hand-mixer.png',
     price: 800,
     description: ''
   }, 

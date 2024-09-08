@@ -17,7 +17,7 @@ navbarFunctions.activateWallet();
 navbarFunctions.activateSearch();
 
 document.querySelector('.shop-name-header').addEventListener('click', () => {
-  history.pushState(null, null, '/');
+  history.pushState(null, null, '/SHOPME/');
   renderCategories();
   window.removeEventListener('resize', renderCartHistory);
 });
