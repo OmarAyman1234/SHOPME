@@ -48,7 +48,11 @@ export const categories = [
     id: '4',
     name: 'House Components',
     image: './Images/house-components/1_house-components.jpg',
-    //Chairs, beds ... etc
+  },
+  {
+    id: '5',
+    name: 'Technology',
+    image: './Images/technology/1_technology-showing.jpg'
   }
 ];
 
@@ -59,7 +63,7 @@ const products = [
     id: '1000', 
     name: 'Espresso Machine', 
     image: './Images/appliances/espresso-machine-two-cups.png', 
-    price: 2000,
+    price: 1999,
     description: 'Turn up the heat and make two coffee cups at the same time!!'
   },
   {
@@ -67,7 +71,7 @@ const products = [
     id: '1001', 
     name: 'Refrigerator', 
     image: './Images/appliances/refrigerator.png', 
-    price: 30000,
+    price: 29999,
     description: ''
   },
   {
@@ -75,7 +79,7 @@ const products = [
     id: '1002', 
     name: 'Microwave Oven', 
     image: './Images/appliances/microwave-oven.png', 
-    price: 15000,
+    price: 14999,
     description: ''
   },
   {
@@ -83,137 +87,288 @@ const products = [
     id: '1003', 
     name: 'Iron Appliance', 
     image: './Images/appliances/iron-appliance.png', 
-    price: 2000,
+    price: 1999,
     description: ''
   },
-
-
+  {
+    type: 'appliances',
+    id: '1004',
+    name: 'Washing Machine',
+    image: './Images/appliances/washing-machine.png',
+    price: 5999,
+    description: ''
+  },
+  {
+    type: 'appliances',
+    id: '1005',
+    name: 'Air Conditioner',
+    image: './Images/appliances/air-conditioner.png',
+    price: 24999,
+    description: ''
+  },
+  {
+    type: 'appliances',
+    id: '1006',
+    name: 'Window Air Conditioner',
+    image: './Images/appliances/window-air-conditioner.png',
+    price: 19999,
+    description: ''
+  },
   {
     type: 'kitchenware',
-    id: '1004',
+    id: '2000',
     name: 'Gas Cooker With Oven',
     image: './Images/kitchenware/gas-cooker-with-oven.png',
-    price: 25000,
+    price: 24999,
     description: ''
   },
   {
     type: 'kitchenware',
-    id: '1005',
+    id: '2001',
     name: 'Hand Mixer',
     image: './Images/kitchenware/Hand-mixer.png',
-    price: 800,
-    description: ''
-  }, 
-  {
-    type: 'kitchenware',
-    id: '1006',
-    name: 'Blue Cup',
-    image: './Images/kitchenware/blue-cup.png',
-    price: 50,
+    price: 799,
     description: ''
   },
   {
     type: 'kitchenware',
-    id: '1007',
+    id: '2002',
+    name: 'Blue Cup',
+    image: './Images/kitchenware/blue-cup.png',
+    price: 49,
+    description: ''
+  },
+  {
+    type: 'kitchenware',
+    id: '2003',
     name: 'Cutting Board',
     image: './Images/kitchenware/cutting-board-wooden.png',
-    price: 200,
+    price: 199,
     description: 'A wooden cutting board'
   },
   {
     type: 'kitchenware',
-    id: '1008',
+    id: '2004',
     name: 'Fork',
     image: './Images/kitchenware/fork-kitchenware.jpg',
-    price: 70,
+    price: 59,
     description: 'A stainless steel fork'
   },
   {
     type: 'kitchenware',
-    id: '1009',
+    id: '2005',
     name: 'Frying Pan',
     image: './Images/kitchenware/frying-pan.png',
-    price: 400,
+    price: 399,
     description: ''
   },
   {
     type: 'kitchenware',
-    id: '1010',
+    id: '2006',
     name: 'Glass Cup',
     image: './Images/kitchenware/glass-cup.png',
-    price: 75,
+    price: 79,
     description: ''
   },
   {
     type: 'kitchenware',
-    id: '1011',
+    id: '2007',
     name: 'Soup Ladle',
     image: './Images/kitchenware/plastic-soup-ladle.png',
-    price: 60,
+    price: 59,
     description: 'A plastic soup ladle'
   },
   {
     type: 'kitchenware',
-    id: '1012',
+    id: '2008',
     name: 'Rolling Pin',
     image: './Images/kitchenware/rolling-pin-wooden.png',
-    price: 55,
+    price: 99,
     description: 'A wooden rolling pin'
   },
   {
     type: 'kitchenware',
-    id: '1013',
+    id: '2009',
     name: 'Dishware Set',
     image: './Images/kitchenware/set-of-dishware-stainless-steel.png',
-    price: 900,
+    price: 899,
     description: 'A set of stainless steel dishware'
-  }, 
+  },
   {
     type: 'kitchenware',
-    id: '1014',
+    id: '2010',
     name: 'Cooking Spoon',
     image: './Images/kitchenware/spoon-wooden.png',
-    price: 95,
+    price: 79,
     description: 'A wooden spoon for cooking'
   },
   {
     type: 'kitchenware',
-    id: '1015',
+    id: '2011',
     name: 'Cooking Spoons Set',
     image: './Images/kitchenware/spoons-wooden.png',
-    price: 250,
+    price: 249,
     description: 'A set of wooden spoons for cooking'
   },
   {
     type: 'kitchenware',
-    id: '1016',
+    id: '2012',
     name: 'Square Grill Pan',
     image: './Images/kitchenware/square-grill-pan.png',
-    price: 340,
+    price: 339,
     description: ''
   },
   {
     type: 'kitchenware',
-    id: '1017',
+    id: '2013',
     name: 'Teapot',
     image: './Images/kitchenware/teapot-red.png',
-    price: 180,
+    price: 179,
     description: 'A red teapot'
   },
   {
+    type: 'kitchenware',
+    id: '2014',
+    name: 'Electric Grill',
+    image: './Images/kitchenware/electric-grill.png',
+    price: 2999,
+    description: ''
+  },
+  {
     type: 'clothing',
-    id: '1018',
+    id: '3000',
     name: 'T-Shirt',
     image: './Images/clothing/men-tshirt-black.png',
-    price: 400,
+    price: 399,
     description: 'A black tshirt for men'
   },
   {
     type: 'clothing',
-    id: '1019',
+    id: '3001',
     name: 'Belt',
     image: './Images/clothing/leather-belt-black.png',
-    price: 200,
+    price: 199,
     description: 'A black leather belt for men'
+  },
+  {
+    type: 'house components',
+    id: '4000',
+    name: 'Arm Chair',
+    image: './Images/house-components/arm-chair.png',
+    price: 999,
+    description: ''
+  },
+  {
+    type: 'house components',
+    id: '4001',
+    name: 'Door',
+    image: './Images/house-components/door.png',
+    price: 6499,
+    description: ''
+  },
+  {
+    type: 'house components',
+    id: '4002',
+    name: 'Reclining Leather Chair',
+    image: './Images/house-components/reclining-leather-chair.png',
+    price: 2999,
+    description: ''
+  },
+  {
+    type: 'house components',
+    id: '4003',
+    name: 'Towels',
+    image: './Images/house-components/towels.png',
+    price: 299,
+    description: ''
+  },
+  {
+    type: 'house components',
+    id: '4004',
+    name: 'Wall Clock',
+    image: './Images/house-components/wall-clock.png',
+    price: 149,
+    description: ''
+  },
+  {
+    type: 'house components',
+    id: '4005',
+    name: 'Wooden Clothes Hanger',
+    image: './Images/house-components/wooden-clothes-hanger.png',
+    price: 49,
+    description: ''
+  },
+
+  {
+    type: 'technology',
+    id: '5000',
+    name: 'Smartphone',
+    image: './Images/technology/smartphone.png',
+    price: 7499,
+    description: ''
+  },
+  {
+    type: 'technology',
+    id: '5001',
+    name: 'Laptop',
+    image: './Images/technology/laptop.png',
+    price: 19999,
+    description: ''
+  },
+  {
+    type: 'technology',
+    id: '5002',
+    name: 'TV',
+    image: './Images/technology/tv.png',
+    price: 24999,
+    description: ''
+  },
+  {
+    type: 'technology',
+    id: '5003',
+    name: 'Computer Case',
+    image: './Images/technology/computer-case.png',
+    price: 7999,
+    description: ''
+  },
+  {
+    type: 'technology',
+    id: '5004',
+    name: 'Drone',
+    image: './Images/technology/flying-drone.png',
+    price: 9999,
+    description: ''
+  },
+  {
+    type: 'technology',
+    id: '5005',
+    name: 'Segway',
+    image: './Images/technology/segway.png',
+    price: 18999,
+    description: ''
+  },
+  {
+    type: 'technology',
+    id: '5006',
+    name: 'Camera',
+    image: './Images/technology/camera.png',
+    price: 3999,
+    description: ''
+  },
+  {
+    type: 'technology',
+    id: '5007',
+    name: 'Camera Lens',
+    image: './Images/technology/camera-lens.png',
+    price: 1499,
+    description: ''
+  },
+  {
+    type: 'technology',
+    id: '5008',
+    name: 'Security Camera',
+    image: './Images/technology/security-cam.png',
+    price: 2299,
+    description: ''
   }
-]
+];

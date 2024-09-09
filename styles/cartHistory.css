@@ -12,14 +12,19 @@
   --historyImgsBorder: 2px solid #4f6a79;
 }
 
+.cart-history-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 .cart-history-button {
-  align-self: flex-start;
+  width: 80%;
 
   background-color: var(--searchFocus);
-
   
   font-weight: bold;
+  font-size: 1.2rem;
   
   border: var(--addToCartBorder);
   border-radius: 8px;

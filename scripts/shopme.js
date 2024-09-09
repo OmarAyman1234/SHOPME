@@ -88,7 +88,7 @@ function handleCategoriesClick(categoryName) {
         </div>
         <h2>${categoryProduct.name}</h2>
         <p class="product-description">${categoryProduct.description}</p>
-        <p class="product-price">L.E ${categoryProduct.price}</p>
+        <p class="product-price">EGP ${categoryProduct.price}</p>
         <div class="add-to-cart-container">
           <button class="add-to-cart-button" data-button-id="${categoryProduct.id}">Add To Cart</button>
         </div>

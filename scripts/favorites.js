@@ -120,7 +120,7 @@ export function renderFavorites() {
         </div>
         <h2>${favoriteProduct.name}</h2>
         <p class="product-description">${favoriteProduct.description}</p>
-        <p class="product-price">L.E ${favoriteProduct.price}</p>
+        <p class="product-price">EGP ${favoriteProduct.price}</p>
         <div class="add-to-cart-container">
           <button class="add-to-cart-button" data-button-id="${favoriteProduct.id}">Add To Cart</button>
         </div>

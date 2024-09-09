@@ -87,7 +87,7 @@ export function renderCartProducts() {
               <p class="update-quantity update-quantity-${cartProduct.product.id}" data-update-quantity-id="${cartProduct.product.id}">Update</p>
             </div>
 
-            <p class="price price-${cartProduct.product.id}">Price: L.E ${cartProduct.product.price}</p>
+            <p class="price price-${cartProduct.product.id}">Price: EGP ${cartProduct.product.price}</p>
           </div>
 
           <div class="remove-product-container">
@@ -194,10 +194,10 @@ function checkoutDisplay() {
     orderTotal = itemsTotal + shipping;
 
     document.querySelector('.checkout-items-number').textContent = `Items(${itemsNumber}):`;
-    document.querySelector('.checkout-items-price').textContent = `L.E ${itemsTotal}`;
+    document.querySelector('.checkout-items-price').textContent = `EGP ${itemsTotal}`;
 
-    document.querySelector('.checkout-shipping-price').textContent = `L.E ${shipping}`;
-    document.querySelector('.order-total-price').textContent = `L.E ${orderTotal}`;
+    document.querySelector('.checkout-shipping-price').textContent = `EGP ${shipping}`;
+    document.querySelector('.order-total-price').textContent = `EGP ${orderTotal}`;
   }
 }
 checkoutDisplay();
@@ -324,7 +324,7 @@ export function renderCartHistory() {
 
           <div class="history-order-info">
             <h2 class="history-order-id">Order ID: ${item.orderId}</h2>
-            <h3 class="history-order-total">Order Total: L.E ${totalPrice + 50}</h3>
+            <h3 class="history-order-total">Order Total: EGP ${totalPrice + 50}</h3>
             <h3 class="history-order-time">Order Time: ${item.time}</h3>
           </div>
       
@@ -391,7 +391,7 @@ export function renderOrderDetails(orderId) {
       <div class="history-item-info">
         <h2 class="history-item-name">${cartItem.product.name}</h2>
         <p class="history-item-quantity">Quantity: ${cartItem.quantity}</p>
-        <p class="history-item-price">Price: L.E ${cartItem.product.price}</p>
+        <p class="history-item-price">Price: EGP ${cartItem.product.price}</p>
       </div>
     </div>
     `

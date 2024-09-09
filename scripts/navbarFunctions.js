@@ -91,7 +91,7 @@ document.querySelector('.add-money-button').addEventListener('click', () => {
 });
 
 
-document.querySelector('.wallet-balance').innerHTML = `Balance: L.E ${balanceObject.balance}`;
+document.querySelector('.wallet-balance').innerHTML = `Balance: EGP ${balanceObject.balance}`;
 
 //Update money
 document.querySelector('.update-money').addEventListener('click', () => {
@@ -148,7 +148,7 @@ export function renderSearchResults() {
           </div>
           <h2>${matchedProduct.name}</h2>
           <p class="product-description">${matchedProduct.description}</p>
-          <p class="product-price">L.E ${matchedProduct.price}</p>
+          <p class="product-price">EGP ${matchedProduct.price}</p>
           <div class="add-to-cart-container">
             <button class="add-to-cart-button" data-button-id="${matchedProduct.id}">Add To Cart</button>
           </div>

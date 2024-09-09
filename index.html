@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/toast.css">
   <link rel="stylesheet" href="styles/navbar.css">
   <link rel="stylesheet" href="styles/search.css">
@@ -18,7 +19,6 @@
   <link rel="stylesheet" href="styles/categories.css">
   <link rel="stylesheet" href="styles/products.css">
   <link rel="stylesheet" href="styles/footer.css">
-  <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
   <nav class="navbar">
@@ -53,7 +53,7 @@
         <button class="material-symbols-outlined navbar-right-button navbar-right-wallet">wallet</button>
         <div class="navbar-tooltip-wallet">Wallet</div>
         <div class="wallet-status">
-          <p class="wallet-balance">Balance: L.E 0</p>
+          <p class="wallet-balance">Balance: EGP 0</p>
           <div class="add-money-container">
             <button class="add-money-button">Add Money</button>
             <div class="hidden input-add-money-container">
@@ -95,8 +95,9 @@
     </section>
     
     <section class="cart-checkout-wrapper">
-
-      <button class="cart-history-button">Cart History</button>
+      <div class="cart-history-button-container">
+        <button class="cart-history-button">Cart History</button>
+      </div>
 
       <div class="cart-checkout-container">
         <div class="cart-products-container">
@@ -143,30 +144,42 @@
     
   </div>
 
-  <footer class="shopme-footer">
-    <div class="footer-flex">
-      <h3>NEED HELP?</h3>
-      <a href="#">Customer Service</a>
-      <a href="#">FAQs</a>
+  <footer>
+    <div class="shopme-footer-1">
+      <div class="footer-flex">
+        <h3>NEED HELP?</h3>
+        <a href="#">Customer Service</a>
+        <a href="#">FAQs</a>
+      </div>
+      <div class="footer-flex">
+        <h3>JOIN US ON</h3>
+        <a href="#">Facebook</a>
+        <a href="#">X</a>
+        <a href="#">Whatsapp Channel</a>
+        <a href="#">Telegram</a>
+      </div>
+      <div class="footer-flex">
+        <h3>MAKE MONEY WITH US</h3>
+        <a href="#">Sell your products</a>
+      </div>
+      <div class="footer-flex">
+        <h3>ABOUT SHOPME</h3>
+        <a href="#">Terms of service</a>
+        <a href="#">Privacy Policy</a>
+      </div>
     </div>
-    <div class="footer-flex">
-      <h3>JOIN US ON</h3>
-      <a href="#">Facebook</a>
-      <a href="#">X</a>
-      <a href="#">Whatsapp Channel</a>
-      <a href="#">Telegram</a>
+
+    <div class="shopme-footer-2">
+      <div class="footer-icons">
+        <a href="https://www.linkedin.com/in/omar-ayman-156762308/" target="_blank" class="fa-brands fa-linkedin"></a>
+        <a href="https://github.com/OmarAyman1234" target="_blank" class="fa-brands fa-github"></a>
+      </div>
+      <p>&copy;2024 SHOPME, all rights reserved.</p>
     </div>
-    <div class="footer-flex">
-      <h3>MAKE MONEY WITH US</h3>
-      <a href="#">Sell your products</a>
-    </div>
-    <div class="footer-flex">
-      <h3>ABOUT SHOPME</h3>
-      <a href="#">Terms of service</a>
-      <a href="#">Privacy Policy</a>
-    </div>
+    
   </footer>
 
   <script type="module" src="scripts/shopme.js"></script>
+  <script src="https://kit.fontawesome.com/7770dbc440.js" crossorigin="anonymous"></script>
 </body>
 </html>

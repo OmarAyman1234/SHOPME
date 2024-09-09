@@ -1,13 +1,31 @@
-.shopme-footer {
+:root {
+  --footer1Bg: var(--secondary);
+  --footer2Bg: #4ca8a8;
+  --linkedInIconHover: #eee;
+  --gitHubIconHover: #eee;
+}
+.dark-mode {
+  --footer1Bg: #2c2c2c;
+  --footer2Bg: var(--secondary);
+  --linkedInIconHover: rgb(10, 102, 194);
+  --gitHubIconHover: #bbb;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  margin: 5rem -3rem 0 -3rem;
+}
+
+.shopme-footer-1 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 1rem;
   row-gap: 2rem;
 
-  background-color: var(--secondary);
+  background-color: var(--footer1Bg);
 
   padding: 2rem 2rem 2rem 2rem;
-  margin: 5rem -3rem 0 -3rem;
 }
 
 .dark-mode .footer-flex h3 {
@@ -20,23 +38,55 @@
 }
 
 
+.shopme-footer-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--footer2Bg);
+
+  padding-top: 1rem;
+}
+
+.footer-icons a {
+  color: var(--bodyTextColor);
+  font-size: 25px;
+}
+
+.footer-icons .fa-linkedin {
+  margin-right: 0.5rem;
+}
+.footer-icons .fa-linkedin:hover,
+.footer-icons .fa-linkedin:active {
+  text-decoration: none;
+  color: var(--linkedInIconHover);
+}
+
+.footer-icons .fa-github:hover,
+.footer-icons .fa-github:active {
+  text-decoration: none;
+  color: var(--gitHubIconHover);
+}
+
+
 @media (min-width: 320px) {
-  .shopme-footer {
+  .shopme-footer-1 {
     grid-template-columns: 1fr;
   }
 }
 @media (min-width: 550px) {
-  .shopme-footer {
+  .shopme-footer-1 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (min-width: 900px) {
-  .shopme-footer {
+  .shopme-footer-1 {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (min-width: 1024px) {
-  .shopme-footer {
+  .shopme-footer-1 {
     grid-template-columns: repeat(4, 1fr);
   }
 }

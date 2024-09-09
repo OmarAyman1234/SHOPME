@@ -9,14 +9,14 @@ export const balanceObject = {
       callToast('Balance cannot be less than 0!', 'toast-invalid', 'error');
     } 
     else if(addedBalance === 0 || addedBalance === '') {
-      callToast('Cannot add L.E 0!', 'toast-invalid', 'error');
+      callToast('Cannot add EGP 0!', 'toast-invalid', 'error');
     } 
     else {
       this.balance += addedBalance;
-      callToast(`Added L.E ${addedBalance}.`, 'toast-success', 'attach_money');
+      callToast(`Added EGP ${addedBalance}.`, 'toast-success', 'attach_money');
       localStorage.setItem('balance', JSON.stringify(this.balance));
       
-      document.querySelector('.wallet-balance').innerHTML = `Balance: L.E ${this.balance}`;
+      document.querySelector('.wallet-balance').innerHTML = `Balance: EGP ${this.balance}`;
       document.querySelector('.input-add-money').value = '';
   
       document.querySelector('.input-add-money-container').classList.add('hidden');
@@ -29,10 +29,10 @@ export const balanceObject = {
     if(this.balance >= orderTotal) {
       this.balance -= orderTotal;
       localStorage.setItem('balance', JSON.stringify(this.balance));
-      document.querySelector('.wallet-balance').innerHTML = `Balance: L.E ${this.balance}`;
+      document.querySelector('.wallet-balance').innerHTML = `Balance: EGP ${this.balance}`;
       return 'success';
     } else {
-      callToast(`Not enough balance, you need L.E ${orderTotal - this.balance} to continue this purchase.`, 'toast-invalid', 'error');
+      callToast(`Not enough balance, you need EGP ${orderTotal - this.balance} to continue this purchase.`, 'toast-invalid', 'error');
       return 'failure'
     }
   }
