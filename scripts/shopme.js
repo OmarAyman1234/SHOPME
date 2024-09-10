@@ -1,9 +1,9 @@
-import { categories, getCategoryProducts, getMatchedProducts } from "../data/data.js";
+import { categories, getCategoryProducts } from "../data/data.js";
 import { handleUrlName } from "../utils/handleUrlName.js";
 import { hideBodyContent } from "../utils/modifySections.js";
 import { addToCartButton, renderCartProducts, renderCartHistory, renderOrderDetails } from "./cart.js";
 import * as favoritesControl from './favorites.js';
-import * as navbarFunctions from './navbarFunctions.js';
+import * as navbarFunctions from './navbar.js';
 
 const categoriesContainer = document.querySelector('.categories-container');
 const productsContainer = document.querySelector('.products-container');
@@ -11,17 +11,20 @@ const renderedSectionName = document.querySelector('.rendered-section-name');
 
 addToCartButton();
 
-navbarFunctions.darkMode();
+navbarFunctions.changeTheme();
 navbarFunctions.toggleSideBar();
 navbarFunctions.activateWallet();
 navbarFunctions.activateSearch();
 
 document.querySelector('.shop-name-header').addEventListener('click', () => {
+  returnToMainPage();
+});
+
+export function returnToMainPage() {
   history.pushState(null, null, '/SHOPME/');
   renderCategories();
   window.removeEventListener('resize', renderCartHistory);
-});
-
+}
 
 
 function renderCategories() {
@@ -124,10 +127,11 @@ function handleHashChange() {
   const hash = location.hash.slice(1); // Remove the leading '#'
   const hashParts = hash.split('/').filter(part => part !== ''); // Split by '/' and remove empty parts
 
+  window.removeEventListener('resize', renderCartHistory);
+
   if(hashParts[0] === 'cart' && hashParts[1] === 'cart-history' && hashParts[2]) {
     window.scrollTo(0, 0);
     renderOrderDetails(hashParts[2]);
-    window.removeEventListener('resize', renderCartHistory);
   } 
   else if(hashParts[0] === 'cart' && hashParts[1] === 'cart-history') {
     window.scrollTo(0, 0);
@@ -137,18 +141,22 @@ function handleHashChange() {
   else if (hashParts[0] === 'cart') {
     window.scrollTo(0,0);
     renderCartProducts();
-    window.removeEventListener('resize', renderCartHistory);
   } 
   else if(hashParts[0] === 'favorites') {
     window.scrollTo(0, 0);
     favoritesControl.renderFavorites();
-    window.removeEventListener('resize', renderCartHistory);
-  } else if(hashParts[0] === 'search-results') {
-    navbarFunctions.renderSearchResults();
-    window.removeEventListener('resize', renderCartHistory);
+  } 
+  else if(hashParts[0] === 'search-results') {
+    const searchInputElement = document.querySelector('.search-navbar-input');
+    let searchedText = searchInputElement.value || localStorage.getItem('lastSearch'); // Fallback to last search from localStorage
+
+    if (searchedText) {
+      // Ensure the input field reflects the last search term
+      searchInputElement.value = searchedText;
+      navbarFunctions.renderSearchResults(); // Render the results based on the last search term
+    }
   }
   else {
-    window.removeEventListener('resize', renderCartHistory);
     const categoryName = getCategoryNameFromHash();
     if (categoryName) {
       handleCategoriesClick(categoryName);

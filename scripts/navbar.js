@@ -3,6 +3,7 @@ import { getMatchedProducts } from "../data/data.js";
 import * as favoritesControl from './favorites.js';
 import { hideBodyContent } from "../utils/modifySections.js";
 import { callToast } from "../utils/toast.js";
+import { returnToMainPage } from "./shopme.js";
 
 const renderedSectionName = document.querySelector('.rendered-section-name');
 
@@ -37,7 +38,18 @@ export function toggleSideBar() {
   });
 }
 
-export function darkMode() {
+function changeFavicon(savedTheme) {
+  const favicon = document.getElementById('favicon');
+
+  if(savedTheme === 'dark') {
+    favicon.setAttribute("href", './Images/shopme-favicon-dark.png');
+  }
+  else if(savedTheme === 'light') {
+    favicon.setAttribute("href", './Images/shopme-favicon-light.png');
+  }
+}
+
+export function changeTheme() {
   const toggleDarkMode = document.querySelector('.navbar-dark-mode-container');
   const darkModeButton = document.querySelector('.navbar-right-dark-mode');
   const darkModeTooltip = document.querySelector('.navbar-tooltip-dark-mode');
@@ -70,6 +82,7 @@ export function darkMode() {
       darkModeButton.textContent = 'dark_mode';
       darkModeTooltip.textContent = 'Dark Mode';
     }
+    changeFavicon(theme);
   }
 }
 
@@ -110,54 +123,66 @@ document.querySelector('.update-money').parentElement.addEventListener('keydown'
 export function activateSearch() {
   const searchButtonElement = document.querySelector('.search-button');
   searchButtonElement.addEventListener('click', () => {
-    location.hash = '#/search-results';
     renderSearchResults();
+    console.log(localStorage.getItem('lastSearch'))
   });
   
   document.querySelector('.search-navbar-input').parentElement.addEventListener('keydown', event => {
     if(event.key === 'Enter') {
-      location.hash = '#/search-results';
       renderSearchResults();
+      console.log(localStorage.getItem('lastSearch'))
     }
   });
 }
 
-
-
 export function renderSearchResults() {
-  window.scrollTo(0, 0);
-
-  hideBodyContent();
+  location.hash = '#/search-results';
 
   const searchInputElement = document.querySelector('.search-navbar-input');
-  let searchedText = searchInputElement.value;
+  let searchedText = searchInputElement.value.trim();
+  localStorage.setItem('lastSearch', searchedText);
 
-  let matchedProducts = getMatchedProducts(searchedText);
-
-  let searchResultsHTML = ``;
-
-  if(matchedProducts.length === 0 || searchInputElement.value === '') {
-    searchResultsHTML = `<p>' ${searchInputElement.value} ' didn't match any results.</p>`;
-  } else {
-    matchedProducts.forEach(matchedProduct => {
-      searchResultsHTML += `
-        <div class="each-product-container">
-          <span class="material-symbols-outlined add-to-favorites add-to-favorites-${matchedProduct.id} material-icons" data-add-to-favorites-id="${matchedProduct.id}">favorite</span>
-          <div class="product-image-container">
-            <img src="${matchedProduct.image}" alt="Image is not available at the moment">
-          </div>
-          <h2>${matchedProduct.name}</h2>
-          <p class="product-description">${matchedProduct.description}</p>
-          <p class="product-price">EGP ${matchedProduct.price}</p>
-          <div class="add-to-cart-container">
-            <button class="add-to-cart-button" data-button-id="${matchedProduct.id}">Add To Cart</button>
-          </div>
-        </div>
-      `;
-    });   
+  if(searchedText === '' || searchedText === ' ') {
+    searchedText = localStorage.getItem('lastSearch') || '';
   }
-  document.querySelector('.search-container').classList.remove('hidden');
-  document.querySelector('.search-container').innerHTML = searchResultsHTML;
-  renderedSectionName.textContent = `Search results for " ${searchedText} "`;
-  favoritesControl.initializeFavorites();
+  if(searchedText === '' || searchedText === ' ') {
+    searchInputElement.value = '';
+    returnToMainPage();
+    localStorage.setItem('lastSearch', '');
+  } else {
+    window.scrollTo(0, 0);
+
+    hideBodyContent();
+
+    let matchedProducts = getMatchedProducts(searchedText);
+    let matchedProductsNumber = matchedProducts.length;
+
+    let searchResultsHTML = ``;
+
+    if(matchedProductsNumber === 0) {
+      searchResultsHTML = `<p>"${searchedText}" didn't match any results.</p>`;
+    } else {
+      matchedProducts.forEach(matchedProduct => {
+        searchResultsHTML += `
+          <div class="each-product-container">
+            <span class="material-symbols-outlined add-to-favorites add-to-favorites-${matchedProduct.id} material-icons" data-add-to-favorites-id="${matchedProduct.id}">favorite</span>
+            <div class="product-image-container">
+              <img src="${matchedProduct.image}" alt="Image is not available at the moment">
+            </div>
+            <h2>${matchedProduct.name}</h2>
+            <p class="product-description">${matchedProduct.description}</p>
+            <p class="product-price">EGP ${matchedProduct.price}</p>
+            <div class="add-to-cart-container">
+              <button class="add-to-cart-button" data-button-id="${matchedProduct.id}">Add To Cart</button>
+            </div>
+          </div>
+        `;
+      });   
+    }
+    document.querySelector('.search-container').classList.remove('hidden');
+    document.querySelector('.search-container').innerHTML = searchResultsHTML;
+    renderedSectionName.textContent = `Showing ${matchedProductsNumber} results for "${searchedText}"`;
+    favoritesControl.initializeFavorites();
+  }
+  
 }

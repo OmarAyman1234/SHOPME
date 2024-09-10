@@ -295,7 +295,7 @@ const products = [
     id: '4005',
     name: 'Wooden Clothes Hanger',
     image: './Images/house-components/wooden-clothes-hanger.png',
-    price: 49,
+    price: 19,
     description: ''
   },
 
