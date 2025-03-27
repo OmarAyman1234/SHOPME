@@ -5,20 +5,20 @@ import { callToast } from "../utils/toast.js";
 let favoriteProducts = [];
 
 function loadFavorites() {
-  favoriteProducts = JSON.parse(localStorage.getItem('favorites')) || [];
+  favoriteProducts = JSON.parse(localStorage.getItem("favorites")) || [];
 }
 
 function saveFavorites() {
-  localStorage.setItem('favorites', JSON.stringify(favoriteProducts));
+  localStorage.setItem("favorites", JSON.stringify(favoriteProducts));
 }
 
 function colorFavoritedProducts() {
-  document.querySelectorAll('.add-to-favorites').forEach(icon => {
+  document.querySelectorAll(".add-to-favorites").forEach((icon) => {
     const productId = icon.dataset.addToFavoritesId;
-    if (favoriteProducts.some(product => product.id === productId)) {
-      icon.classList.add('material-icons');
+    if (favoriteProducts.some((product) => product.id === productId)) {
+      icon.classList.add("material-icons");
     } else {
-      icon.classList.remove('material-icons');
+      icon.classList.remove("material-icons");
     }
   });
 }
@@ -27,11 +27,13 @@ export function activateFavoritesMainPg() {
   loadFavorites();
   colorFavoritedProducts();
 
-  document.querySelector('.products-container').addEventListener('click', handleFavoriteClick);
+  document
+    .querySelector(".products-container")
+    .addEventListener("click", handleFavoriteClick);
 }
 
 function handleFavoriteClick(event) {
-  if(event.target.classList.contains('add-to-favorites')) {
+  if (event.target.classList.contains("add-to-favorites")) {
     const addToFavoritesId = event.target.dataset.addToFavoritesId;
     toggleFavorite(addToFavoritesId, event.target);
   }
@@ -39,18 +41,30 @@ function handleFavoriteClick(event) {
 
 function toggleFavorite(productId, iconElement) {
   loadFavorites();
-  let clickedProductIndex = favoriteProducts.findIndex(product => product.id === productId);
+  let clickedProductIndex = favoriteProducts.findIndex(
+    (product) => product.id === productId
+  );
 
   if (clickedProductIndex !== -1) {
-    iconElement.classList.remove('material-icons');
+    iconElement.classList.remove("material-icons");
     favoriteProducts.splice(clickedProductIndex, 1);
-    callToast('Removed From favorites', 'toast-normal', 'heart_minus', 'material-symbols-outlined');
+    callToast(
+      "Removed From favorites",
+      "toast-normal",
+      "heart_minus",
+      "material-symbols-outlined"
+    );
   } else {
-    iconElement.classList.add('material-icons');
+    iconElement.classList.add("material-icons");
     const productToAdd = getProduct(productId);
     if (productToAdd) {
       favoriteProducts.push(productToAdd);
-      callToast('Added to favorites', 'toast-normal', 'heart_plus', 'material-symbols-outlined');
+      callToast(
+        "Added to favorites",
+        "toast-normal",
+        "heart_plus",
+        "material-symbols-outlined"
+      );
     }
   }
 
@@ -61,13 +75,13 @@ export function activateFavoritesSection() {
   loadFavorites();
   colorFavoritedProducts();
 
-  const favoritesContainer = document.querySelector('.favorites-container');
+  const favoritesContainer = document.querySelector(".favorites-container");
 
-  favoritesContainer.addEventListener('click', event => {
-    if (event.target.classList.contains('add-to-favorites')) {
+  favoritesContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("add-to-favorites")) {
       const addToFavoritesId = event.target.dataset.addToFavoritesId;
       removeFavorite(addToFavoritesId);
-      event.target.closest('.each-product-container').remove();
+      event.target.closest(".each-product-container").remove();
       if (favoriteProducts.length === 0) {
         renderEmptyFavorites();
       }
@@ -77,15 +91,21 @@ export function activateFavoritesSection() {
 
 function removeFavorite(productId) {
   loadFavorites();
-  favoriteProducts = favoriteProducts.filter(product => product.id !== productId);
-  callToast('Removed From favorites', 'toast-normal', 'heart_minus', 'material-symbols-outlined');
+  favoriteProducts = favoriteProducts.filter(
+    (product) => product.id !== productId
+  );
+  callToast(
+    "Removed From favorites",
+    "toast-normal",
+    "heart_minus",
+    "material-symbols-outlined"
+  );
   saveFavorites();
 }
 
 function renderEmptyFavorites() {
-  const favoritesContainer = document.querySelector('.favorites-container');
-  favoritesContainer.innerHTML = 
-  `
+  const favoritesContainer = document.querySelector(".favorites-container");
+  favoritesContainer.innerHTML = `
     <div>
       <p>You have no favorite products.</p>
       <br> <br>
@@ -95,28 +115,31 @@ function renderEmptyFavorites() {
 
 export function renderFavorites() {
   loadFavorites();
-  location.hash = '#/favorites';
+  location.hash = "#/favorites";
 
   hideBodyContent();
 
-  document.querySelector('.rendered-section-name').textContent = 'Favorites';
+  document.querySelector(".rendered-section-name").textContent = "Favorites";
 
-  const favoritesContainer = document.querySelector('.favorites-container');
-  favoritesContainer.classList.remove('hidden');
+  const favoritesContainer = document.querySelector(".favorites-container");
+  favoritesContainer.classList.remove("hidden");
 
   if (favoriteProducts.length === 0) {
     renderEmptyFavorites();
     return;
   }
 
-  let favoritesHTML = '';
+  let favoritesHTML = "";
 
-  favoriteProducts.slice().reverse().forEach(favoriteProduct => {
-    favoritesHTML += `
+  favoriteProducts
+    .slice()
+    .reverse()
+    .forEach((favoriteProduct) => {
+      favoritesHTML += `
       <div class="each-product-container">
         <span class="material-symbols-outlined add-to-favorites add-to-favorites-${favoriteProduct.id} material-icons" data-add-to-favorites-id="${favoriteProduct.id}">favorite</span>
         <div class="product-image-container">
-          <img src="${favoriteProduct.image}" alt="Image is not available at the moment">
+          <img loading="lazy" src="${favoriteProduct.image}" alt="Image is not available at the moment">
         </div>
         <h2>${favoriteProduct.name}</h2>
         <p class="product-description">${favoriteProduct.description}</p>
@@ -126,7 +149,7 @@ export function renderFavorites() {
         </div>
       </div>
     `;
-  });
+    });
 
   favoritesContainer.innerHTML = favoritesHTML;
 
@@ -137,12 +160,14 @@ export function renderFavorites() {
 export function initializeFavorites() {
   loadFavorites();
   colorFavoritedProducts();
-  const containers = [document.querySelector('.products-container'), document.querySelector('.search-container')];
-  containers.forEach(container => {
+  const containers = [
+    document.querySelector(".products-container"),
+    document.querySelector(".search-container"),
+  ];
+  containers.forEach((container) => {
     if (container) {
-      container.removeEventListener('click', handleFavoriteClick);
-      container.addEventListener('click', handleFavoriteClick);
+      container.removeEventListener("click", handleFavoriteClick);
+      container.addEventListener("click", handleFavoriteClick);
     }
-  })
-
+  });
 }
