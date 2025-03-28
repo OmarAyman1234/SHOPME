@@ -26,11 +26,19 @@ footer {
 
   padding: 2rem 2rem 2rem 2rem;
 }
+
 .shopme-footer-1 a {
   color: rgb(218, 218, 218);
 }
 .shopme-footer-1 a:hover {
   color: rgb(235, 235, 235);
+}
+
+.dark-mode .shopme-footer-1 a {
+  color: #0072ab;
+}
+.dark-mode .shopme-footer-1 a:hover {
+  color: #0080c1;
 }
 
 .dark-mode .footer-flex h3 {
