@@ -1,3 +1,10 @@
+:root {
+  --heroBg: #f3ce3b;
+}
+
+.dark-mode {
+  --heroBg: rgb(0, 147, 0);
+}
 .hero {
   display: flex;
   flex-direction: column;
@@ -11,7 +18,8 @@
   margin-left: -3rem;
   margin-right: -3rem;
 
-  background: linear-gradient(45deg, var(--secondary), var(--primary));
+  /* background: linear-gradient(45deg, var(--primary), var(--secondary)); */
+  background: var(--heroBg);
   color: var(--bodyTextColor);
 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
