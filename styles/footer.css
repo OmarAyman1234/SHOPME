@@ -1,13 +1,12 @@
 :root {
   --footer1Bg: var(--secondary);
-  --footer2Bg: #4ca8a8;
-  --linkedInIconHover: #eee;
+  --footer2Bg: var(--primary);
+  --linkedInIconHover: rgb(10, 102, 194);
   --gitHubIconHover: #eee;
 }
 .dark-mode {
   --footer1Bg: #2c2c2c;
   --footer2Bg: var(--secondary);
-  --linkedInIconHover: rgb(10, 102, 194);
   --gitHubIconHover: #bbb;
 }
 
@@ -27,6 +26,12 @@ footer {
 
   padding: 2rem 2rem 2rem 2rem;
 }
+.shopme-footer-1 a {
+  color: rgb(218, 218, 218);
+}
+.shopme-footer-1 a:hover {
+  color: rgb(235, 235, 235);
+}
 
 .dark-mode .footer-flex h3 {
   color: #ccc;
@@ -36,7 +41,6 @@ footer {
   flex-direction: column;
   align-items: center;
 }
-
 
 .shopme-footer-2 {
   display: flex;
@@ -51,7 +55,7 @@ footer {
 
 .footer-icons a {
   color: var(--bodyTextColor);
-  font-size: 25px;
+  font-size: 30px;
 }
 
 .footer-icons .fa-linkedin {
@@ -68,7 +72,6 @@ footer {
   text-decoration: none;
   color: var(--gitHubIconHover);
 }
-
 
 @media (min-width: 320px) {
   .shopme-footer-1 {
