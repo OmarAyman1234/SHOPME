@@ -10,7 +10,7 @@ import {
 import * as favoritesControl from "./favorites.js";
 import * as navbarFunctions from "./navbar.js";
 
-const categoriesContainer = document.querySelector(".categories-container");
+const categoriesContainer = document.querySelector("#categories-container");
 const productsContainer = document.querySelector(".products-container");
 const renderedSectionName = document.querySelector(".rendered-section-name");
 

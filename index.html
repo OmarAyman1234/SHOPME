@@ -1,186 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHOPME</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHOPME</title>
 
-  <link id="favicon" rel="icon" type="image/x-icon" href="./Images/shopme-favicon-light.png">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/toast.css">
-  <link rel="stylesheet" href="styles/navbar.css">
-  <link rel="stylesheet" href="styles/search.css">
-  <link rel="stylesheet" href="styles/favorites.css">
-  <link rel="stylesheet" href="styles/wallet.css">
-  <link rel="stylesheet" href="styles/cart.css">
-  <link rel="stylesheet" href="styles/cartHistory.css">
-  <link rel="stylesheet" href="styles/cartHistoryOrder.css">
-  <link rel="stylesheet" href="styles/categories.css">
-  <link rel="stylesheet" href="styles/products.css">
-  <link rel="stylesheet" href="styles/footer.css">
-</head>
-<body>
-  <nav class="navbar">
-
-    <div class="navbar-left-section">
-      <p class="shop-name-header" title="Return to the main page">SHOPME</p>
-    </div>
-
-    <div class="navbar-middle-section">
-      <input class="search-navbar-input" type="text" placeholder="Search" aria-label="Search">
-      <button class="material-symbols-outlined search-button">search</button>
-    </div>
-
-    <div class="navbar-menu-container">
-      <button class="material-symbols-outlined navbar-menu-button">menu</button>
-    </div>
-    <div class="navbar-right-section">
-
-      <div class="navbar-close-menu-container">
-        <span class="material-symbols-outlined navbar-close-menu">close</span>
+    <link
+      id="favicon"
+      rel="icon"
+      type="image/x-icon"
+      href="./Images/shopme-favicon-light.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/toast.css" />
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/hero.css" />
+    <link rel="stylesheet" href="styles/search.css" />
+    <link rel="stylesheet" href="styles/favorites.css" />
+    <link rel="stylesheet" href="styles/wallet.css" />
+    <link rel="stylesheet" href="styles/cart.css" />
+    <link rel="stylesheet" href="styles/cartHistory.css" />
+    <link rel="stylesheet" href="styles/cartHistoryOrder.css" />
+    <link rel="stylesheet" href="styles/categories.css" />
+    <link rel="stylesheet" href="styles/products.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-left-section">
+        <p class="shop-name-header" title="Return to the main page">SHOPME</p>
       </div>
 
-      <div class="navbar-dark-mode-container">
-        <button class="material-symbols-outlined navbar-right-button navbar-right-dark-mode">dark_mode</button>
-        <div class="navbar-tooltip-dark-mode">Dark Mode</div>
+      <div class="navbar-middle-section">
+        <input
+          class="search-navbar-input"
+          type="text"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="material-symbols-outlined search-button">search</button>
       </div>
-      <div class="navbar-favorites-container">
-        <button class="material-symbols-outlined navbar-right-button">favorite</button>
-        <div class="navbar-tooltip-favorites">Favorites</div>
+
+      <div class="navbar-menu-container">
+        <button class="material-symbols-outlined navbar-menu-button">
+          menu
+        </button>
       </div>
-      <div class="navbar-wallet-container">
-        <button class="material-symbols-outlined navbar-right-button navbar-right-wallet">wallet</button>
-        <div class="navbar-tooltip-wallet">Wallet</div>
-        <div class="wallet-status">
-          <p class="wallet-balance">Balance: EGP 0</p>
-          <div class="add-money-container">
-            <button class="add-money-button">Add Money</button>
-            <div class="hidden input-add-money-container">
-              <input class="input-add-money" type="number" name="" id="">
+      <div class="navbar-right-section">
+        <div class="navbar-close-menu-container">
+          <span class="material-symbols-outlined navbar-close-menu">close</span>
+        </div>
+
+        <div class="navbar-dark-mode-container">
+          <button
+            class="material-symbols-outlined navbar-right-button navbar-right-dark-mode"
+          >
+            dark_mode
+          </button>
+          <div class="navbar-tooltip-dark-mode">Dark Mode</div>
+        </div>
+        <div class="navbar-favorites-container">
+          <button class="material-symbols-outlined navbar-right-button">
+            favorite
+          </button>
+          <div class="navbar-tooltip-favorites">Favorites</div>
+        </div>
+        <div class="navbar-wallet-container">
+          <button
+            class="material-symbols-outlined navbar-right-button navbar-right-wallet"
+          >
+            wallet
+          </button>
+          <div class="navbar-tooltip-wallet">Wallet</div>
+          <div class="wallet-status">
+            <p class="wallet-balance">Balance: EGP 0</p>
+            <div class="add-money-container">
+              <button class="add-money-button">Add Money</button>
+              <div class="hidden input-add-money-container">
+                <input class="input-add-money" type="number" name="" id="" />
+              </div>
+              <button class="update-money hidden">Update</button>
             </div>
-            <button class="update-money hidden">Update</button>
           </div>
         </div>
-      </div>
-      <div class="cart-container">
-        <button class="material-symbols-outlined navbar-right-cart">shopping_cart_checkout</button>
-        <div class="nav-cart-quantity">0</div>
-        <div class="navbar-tooltip-cart">Cart & Checkout</div>
-      </div>
-    </div>
-  </nav>
-
-
-  <div class="rendered-section-name-container">
-    <h1 class="rendered-section-name"></h1>
-  </div>
-
-  <main class="body-content">
-
-    <section class="categories-container">
-      
-    </section>
-    
-    <section class="products-container">
-      
-    </section>
-    
-    <section class="favorites-container">
-
-    </section>
-
-    <section class="search-container">
-
-    </section>
-    
-    <section class="cart-checkout-wrapper">
-      <div class="cart-history-button-container">
-        <button class="cart-history-button">Cart History</button>
-      </div>
-
-      <div class="cart-checkout-container">
-        <div class="cart-products-container">
-  
-        </div>
-        
-        <div class="checkout">
-          <h2>Checkout</h2>
-          <p class="empty-checkout-message"></p>
-          <div class="checkout-items">
-            <p class="checkout-items-number"></p>
-            <p class="checkout-items-price"></p>
-          </div>
-          <div class="checkout-shipping">
-            <p class="checkout-shipping-text">Shipping:</p>
-            <p class="checkout-shipping-price"></p>
-          </div>
-          <hr>
-          <div class="order-total">
-            <h3 class="order-total-text">Order Total:</h3>
-            <h3 class="order-total-price"></h3>
-          </div>
-          <button class="checkout-confirm">Confirm Purchase</button>
+        <div class="cart-container">
+          <button class="material-symbols-outlined navbar-right-cart">
+            shopping_cart_checkout
+          </button>
+          <div class="nav-cart-quantity">0</div>
+          <div class="navbar-tooltip-cart">Cart & Checkout</div>
         </div>
       </div>
+    </nav>
 
+    <section class="hero">
+      <h1>Discover the Latest & Best Products for Every Need</h1>
+      <p>Shop with ease across multiple categories, from tech to fashion.</p>
+      <a href="#categories-container"><button>Explore Categories</button></a>
     </section>
 
-    <section class="cart-history">
-  
-    </section>
-
-    <section class="cart-order-history">
-      
-    </section>
-  </main>
-
-  <!-- Overlays all elements except smaller screens sidebar -->
-  <div class="overlay">
-  
-  </div>
-
-  <div class="toast">
-    
-  </div>
-
-  <footer>
-    <div class="shopme-footer-1">
-      <div class="footer-flex">
-        <h3>NEED HELP?</h3>
-        <a href="#">Customer Service</a>
-        <a href="#">FAQs</a>
-      </div>
-      <div class="footer-flex">
-        <h3>JOIN US ON</h3>
-        <a href="#">Facebook</a>
-        <a href="#">X</a>
-        <a href="#">Whatsapp Channel</a>
-        <a href="#">Telegram</a>
-      </div>
-      <div class="footer-flex">
-        <h3>MAKE MONEY WITH US</h3>
-        <a href="#">Sell your products</a>
-      </div>
-      <div class="footer-flex">
-        <h3>ABOUT SHOPME</h3>
-        <a href="#">Terms of service</a>
-        <a href="#">Privacy Policy</a>
-      </div>
+    <div class="rendered-section-name-container">
+      <h1 class="rendered-section-name"></h1>
     </div>
 
-    <div class="shopme-footer-2">
-      <div class="footer-icons">
-        <a href="https://www.linkedin.com/in/omar-ayman-156762308/" target="_blank" class="fa-brands fa-linkedin"></a>
-        <a href="https://github.com/OmarAyman1234" target="_blank" class="fa-brands fa-github"></a>
-      </div>
-      <p>&copy;2024 SHOPME, all rights reserved.</p>
-    </div>
-    
-  </footer>
+    <main class="body-content">
+      <section id="categories-container"></section>
 
-  <script type="module" src="scripts/shopme.js"></script>
-  <script src="https://kit.fontawesome.com/7770dbc440.js" crossorigin="anonymous"></script>
-</body>
+      <section class="products-container"></section>
+
+      <section class="favorites-container"></section>
+
+      <section class="search-container"></section>
+
+      <section class="cart-checkout-wrapper">
+        <div class="cart-history-button-container">
+          <button class="cart-history-button">Cart History</button>
+        </div>
+
+        <div class="cart-checkout-container">
+          <div class="cart-products-container"></div>
+
+          <div class="checkout">
+            <h2>Checkout</h2>
+            <p class="empty-checkout-message"></p>
+            <div class="checkout-items">
+              <p class="checkout-items-number"></p>
+              <p class="checkout-items-price"></p>
+            </div>
+            <div class="checkout-shipping">
+              <p class="checkout-shipping-text">Shipping:</p>
+              <p class="checkout-shipping-price"></p>
+            </div>
+            <hr />
+            <div class="order-total">
+              <h3 class="order-total-text">Order Total:</h3>
+              <h3 class="order-total-price"></h3>
+            </div>
+            <button class="checkout-confirm">Confirm Purchase</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="cart-history"></section>
+
+      <section class="cart-order-history"></section>
+    </main>
+
+    <!-- Overlays all elements except smaller screens sidebar -->
+    <div class="overlay"></div>
+
+    <div class="toast"></div>
+
+    <footer>
+      <div class="shopme-footer-1">
+        <div class="footer-flex">
+          <h3>NEED HELP?</h3>
+          <a href="#">Customer Service</a>
+          <a href="#">FAQs</a>
+        </div>
+        <div class="footer-flex">
+          <h3>JOIN US ON</h3>
+          <a href="#">Facebook</a>
+          <a href="#">X</a>
+          <a href="#">Whatsapp Channel</a>
+          <a href="#">Telegram</a>
+        </div>
+        <div class="footer-flex">
+          <h3>MAKE MONEY WITH US</h3>
+          <a href="#">Sell your products</a>
+        </div>
+        <div class="footer-flex">
+          <h3>ABOUT SHOPME</h3>
+          <a href="#">Terms of service</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+
+      <div class="shopme-footer-2">
+        <div class="footer-icons">
+          <a
+            href="https://www.linkedin.com/in/omar-ayman-156762308/"
+            target="_blank"
+            class="fa-brands fa-linkedin"
+          ></a>
+          <a
+            href="https://github.com/OmarAyman1234"
+            target="_blank"
+            class="fa-brands fa-github"
+          ></a>
+        </div>
+        <p>&copy;2025 SHOPME, all rights reserved.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="scripts/shopme.js"></script>
+    <script
+      src="https://kit.fontawesome.com/7770dbc440.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
