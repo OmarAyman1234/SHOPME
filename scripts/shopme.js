@@ -13,6 +13,7 @@ import * as navbarFunctions from "./navbar.js";
 const categoriesContainer = document.querySelector("#categories-container");
 const productsContainer = document.querySelector(".products-container");
 const renderedSectionName = document.querySelector(".rendered-section-name");
+const heroSection = document.querySelector(".hero");
 
 addToCartButton();
 
@@ -47,6 +48,7 @@ function renderCategories() {
     `;
   });
   hideBodyContent();
+  heroSection.classList.remove("hidden");
   categoriesContainer.classList.remove("hidden");
   categoriesContainer.innerHTML = categoriesRender;
   renderedSectionName.textContent = "Categories";
