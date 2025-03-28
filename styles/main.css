@@ -14,12 +14,12 @@ body {
 }
 
 :root {
-  --primary: rgb(245, 245, 0);
-  --secondary: #7caeae;
+  --primary: #ffcc00;
+  --secondary: #3a97c9;
   --accentColor: #046;
 
-  --bodyBk: rgb(211, 211, 211);
-  --bodyTextColor: #222;
+  --bodyBk: #f8f9fa;
+  --bodyTextColor: #111;
 
   --successColor: rgb(0, 160, 0);
   --errorColor: rgb(220, 0, 0);
@@ -30,7 +30,6 @@ body {
   --primary: rgb(0, 190, 0);
   --secondary: #222;
   --accentColor: #80d4ff;
-
   --bodyBk: #4d4d4d;
   --bodyTextColor: #e6e6e6;
 }
@@ -78,13 +77,6 @@ a:hover {
 .hidden {
   display: none !important;
 }
-
-::selection {
-  color: white;
-  background-color: rgb(200, 0, 0);
-}
-
-
 
 @media (min-width: 320px) and (max-width: 659px) {
   body {
